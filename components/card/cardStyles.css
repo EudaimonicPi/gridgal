@@ -1,0 +1,68 @@
+/* annotate what each does, thanks GPT! */
+/* how to keep same size */
+.cardContainer {
+  background-color: orange;
+  border-radius: 12px;
+  overflow: scroll;
+
+  /*  i need something like this, which is more dynamic */
+  max-width: 300px;
+  min-width: 300px;
+
+  max-height: 400px;
+  min-height: 400px;
+
+  /* width: 90%; */
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+/* where is this being put? */
+.cardPhoto {
+  /* see how i can rewrite style with flexboxes */
+  width: 100%;
+  height: 200px; /* Adjust the height based on your design */
+  object-fit: scale-down;
+}
+
+.cardContent {
+  background-color: #dddddd;
+  padding: 16px;
+  height: 200px;
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeading {
+  flex: 1;
+  /* background-color: pink; */
+  font-size: 1rem;
+  /* margin-bottom: 8px; */
+}
+
+.cardDescription {
+  flex: 4;
+  /* background-color: yellow; */
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.cardButton {
+  flex: 0.5;
+  background-color: #8c1515;
+  color: #fff;
+  border: none;
+  padding: 5px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cardButton:hover {
+  background-color: #4c0808;
+}
