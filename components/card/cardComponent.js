@@ -13,16 +13,28 @@ export default function CardComponent(props) {
     const author = "author"
     const description = "This is the grid description" 
     const image = Image.src //have to src based on how i imported
+    const cardT = {
+            title: heading,
+            author,
+            description, 
+            image
+        } 
+
+    function createCard(card=cardT) {
+        return { 
+            title: card.title, 
+            author: card.author, 
+            description: card.description,
+            image: card.image
+        }
+    }
+
+    
 
     return (
         <div>
             <ModalView setShow={setShow} show={show}/>
-            <CardView setShow={setShow}
-                    heading={heading}
-                    author={author}
-                    description={description}
-                    image={image}
-            />
+            <CardView setShow={setShow} card={createCard(props.card)} />
         </div>
 
 

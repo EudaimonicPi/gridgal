@@ -5,24 +5,22 @@ import './cardStyles.css';
 export default function SingleCard (props) {
     // const [heading, description, buttonText] = props
      const setShow = props.setShow
-    const heading = props.heading
-    const author = props.author
-    const description = props.description
-    const img = props.image
+     const card = props.card
 
     // says same thing every time
     const buttonText = "Learn More" // opens modal that has a broader view and longer description 
- 
+
     return (
      <div className="cardContainer">
-          <img src={img} className="cardPhoto"/>
+          <img src={card.image} className="cardPhoto"/>
           <div className="cardContent">
           <div className="cardHeading">
-               <div><b>{heading}</b></div>
-               <div>{author}</div>
+               <div><b>{card.title}</b></div>
+               <div>{card.author}</div>
           </div>
-          <p className="cardDescription">{description}</p>
+          <p className="cardDescription">{card.description}</p>
           <div style={{}}>
+               {/*  clicking on the card shows you the more info modal  */}
                <button className="cardButton" onClick={() => setShow(true)}>
                     {buttonText}
                </button>
