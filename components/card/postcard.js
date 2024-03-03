@@ -1,6 +1,5 @@
 import './cardStyles.css';
 // TO DO: standardize size of image!
-//TO DO: in card component edit buttons and links
 
 export default function SingleCard (props) {
     // const [heading, description, buttonText] = props

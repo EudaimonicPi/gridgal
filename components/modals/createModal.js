@@ -4,21 +4,42 @@ import {useState} from 'react'
 import Modal from 'react-bootstrap/Modal'; //just keeping it consistent :)
 import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
 import Image from '@/public/vercel.svg'
+import { genCard } from '@/utils/cards'
+import { getImagePreview } from '@/utils/imageFn'
+import { createOne } from '@/utils/databaseFn'
+
+const IMAGE_DEFAULT = Image.src
 
 export default function CreateModal({show, handleClose, cards, setCards}) {
     const [title, setTitle] = useState('') // title 
     const [author, setAuthor] = useState('') // title 
     const [description, setDescription] = useState('') // title 
+    const [image, setImage] = useState(null);
 
-    const genCard = (title, author, description, image) => { 
-        return {title, author, description, image}
+    function resetInputs() {
+        setTitle('');
+        setAuthor('');
+        setDescription('');
+        setImage(null);
+        handleClose();
     }
     
-    function setCardsFn(title, author, description, image) {
-        // here can validate ???
-        const card = genCard(title, author, description, image)
+    
+    //
+    function onSubmitFn(title, author, description, imageURL) {
+        // Image.src would be default here
+        const imageInput = imageURL? URL.createObjectURL(imageURL): IMAGE_DEFAULT // have to fix default one
+        const card = genCard(title, author, description, imageInput)
         setCards([...cards, card])
+        resetInputs()
+        // note ASYNC FUNCTION
+        createOne('YOYOYO', card)
     }
+
+    const handleImageChange = (e) => { // chat, presumably makes image out of first file
+        const selectedImage = e.target.files[0];
+        setImage(selectedImage);
+    };
 
     return (
             <Modal show={show} onHide={handleClose}>
@@ -29,12 +50,14 @@ export default function CreateModal({show, handleClose, cards, setCards}) {
                     {/* NOTE: eventually clean up white space and stuff*/}
                     <div>
                         <p>Name Your Grid (unique)</p>
+
                         <p>Title</p>
                         <input
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />  
+
                         <p> Grid Author </p>
                         <input
                             type="text"
@@ -48,8 +71,20 @@ export default function CreateModal({show, handleClose, cards, setCards}) {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />  
-                        <button onClick={() => setCardsFn(title, author, description, Image.src)}>Submit</button> 
+
+                        <p>Upload Image</p>
+                        <input 
+                            type="file" 
+                            accept="image/*" 
+                            onChange={handleImageChange} >
+                        </input>
+                        {/* image preview pops up */}
+                        {image && getImagePreview(image)}
+                        <button onClick={() => onSubmitFn(title, author, description, image)}>
+                            Submit
+                        </button> 
                     </div>
+                    {/* could have input thing for whole fun */}
                     {/* <div style={{color: 'gray'}}>
                         {inputErr && inputErrMsg}
                     </div> */}

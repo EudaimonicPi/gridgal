@@ -1,27 +1,26 @@
 //npm i boostrap react-boostrap
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { getHugeImage } from '@/utils/imageFn'
 
 //for styling purposes. essential? 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-//with all of these would probs be better to use props
-export default function ModalView(props) {
-    const show = props.show
-    const setShow = props.setShow
-    // const cellId = props.cellId
-    // props: show, handleClose, cellId
+ 
+export default function ModalView({card, show, setShow}) {
     return (
-            <Modal show={show} onHide={() => props.setShow(false)}>
+            <Modal show={show} onHide={() => setShow(false)}>
                 {/* <div> ahls;kasgas</div> */}
                 <Modal.Header closeButton> 
-                <Modal.Title>  some title shit </Modal.Title>
+                <Modal.Title>  {card.title} info </Modal.Title>
                 </Modal.Header>      
                 <Modal.Body className="modal-container"> 
-                    <div>spme body stuff</div>
+                    <div> Higher Res info</div>
+                    {getHugeImage(card.image)}
+                    {card.description}
                 </Modal.Body>
                 <Modal.Footer>
-                    <div>some footer stuff</div>
+                    <div> made by {card.author} </div>
                     <Button variant="primary" onClick={() => setShow(close)}>
                     Close
                  </Button> 

@@ -1,15 +1,14 @@
-/* annotate what each does, thanks GPT! */
 /* how to keep same size */
 .cardContainer {
   background-color: yellow;
   border-radius: 12px;
   overflow: scroll;
 
-  /*  i need something like this, which is more dynamic */
   max-width: 20%; /* Adjust the percentage for dynamic width */
   min-width: 30vh; /* Adjust the percentage for dynamic width */
-  max-height: 30%; /* Adjust the viewport height percentage for dynamic height */
-  min-height: 40vh; /* Adjust the viewport height percentage for dynamic height */
+
+  min-height: 40vh;
+  max-height: 40vh;
 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 0.5%;
@@ -23,22 +22,22 @@
 .cardPhoto {
   /* see how i can rewrite style with flexboxes */
   flex: 2;
-  background-color: #8c1515;
-
+  background-color: black;
   width: 100%;
-  height: 100%; /* Adjust the height based on your design */
-
+  min-height: 20vh;
+  max-height: 20vh;
   object-fit: scale-down;
 }
 
 .cardContent {
   background-color: #dddddd;
   padding: 5%;
-  /* height: 200px; */
 
-  width: 100%;
-  height: 100%; /* Adjust the height based on your design */
+  max-width: 30vh;
+  min-height: 20vh;
+  max-height: 20vh;
 
+  overflow: scroll;
   flex: 3;
   display: flex;
   flex-direction: column;
@@ -47,7 +46,8 @@
 .cardHeading {
   flex: 1;
   background-color: pink;
-  font-size: 1rem;
+  overflow: scroll;
+  /* font-size: 1rem; */
   /* margin-bottom: 8px; */
 }
 
@@ -56,6 +56,7 @@
   background-color: yellow;
   font-size: 0.8rem;
   color: #555;
+  overflow: scroll;
   /* margin-bottom: 16px; */
 }
 
