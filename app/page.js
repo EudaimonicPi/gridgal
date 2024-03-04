@@ -4,7 +4,6 @@ import Card from '@/components/card/cardComponent'
 import CreateButton from '@/components/buttons/createButton'
 import CreateModal from '@/components/modals/createModal'
 import { fetchAll } from '@/utils/databaseFn'
-import { faHeartCircleCheck } from '@fortawesome/free-solid-svg-icons'
 // import "./page.module.css";
 
 const cardContainerStyle = {
@@ -14,23 +13,18 @@ const cardContainerStyle = {
   justifyContent: 'space-around',
   flexWrap: 'wrap',
   padding: '20px',
-
 }
-
 
 export default function Home() {
   const [show, setShow] = useState(false) // show for the create button modal 
   const [cards, setCards] = useState([]) //card arr to store cards 
 
- 
-
   function getCards() {
-    // gets all the card elements
-    console.log("Cards is ", cards, typeof(cards))
+    // gets all the card elements, this is working I think, werid stuff w images tho
     return cards.map((card) => <Card card={card}/>)
   }
 
-  useEffect(() => {
+  useEffect(() => { // weird promise stuff ou non?
       // IIFE to create an asynchronous context
       (async () => {
         try {

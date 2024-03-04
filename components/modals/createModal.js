@@ -7,6 +7,7 @@ import Image from '@/public/vercel.svg'
 import { genCard } from '@/utils/cards'
 import { getImagePreview } from '@/utils/imageFn'
 import { createOne } from '@/utils/databaseFn'
+import { set } from 'mongoose';
 
 const IMAGE_DEFAULT = Image.src
 
@@ -14,7 +15,8 @@ export default function CreateModal({show, handleClose, cards, setCards}) {
     const [title, setTitle] = useState('') // title 
     const [author, setAuthor] = useState('') // title 
     const [description, setDescription] = useState('') // title 
-    const [image, setImage] = useState(null);
+    const [imageFile, setImage] = useState(null);
+    const [image, setFinalImage] = useState(null)
 
     function resetInputs() {
         setTitle('');
@@ -24,17 +26,34 @@ export default function CreateModal({show, handleClose, cards, setCards}) {
         handleClose();
     }
     
-    
-    //
-    function onSubmitFn(title, author, description, imageURL) {
-        // Image.src would be default here
-        const imageInput = imageURL? URL.createObjectURL(imageURL): IMAGE_DEFAULT // have to fix default one
-        const card = genCard(title, author, description, imageInput)
-        setCards([...cards, card])
-        resetInputs()
-        // note ASYNC FUNCTION
-        createOne('YOYOYO', card)
+
+
+const onSubmitFn = async (title, author, description, imageFile) => {
+    try { // thanks chat gpt!
+        const reader = new FileReader();
+
+        // Set up a promise to resolve when the reader has loaded the file
+        const fileLoaded = new Promise((resolve) => {
+            reader.addEventListener('load', () => {
+                resolve(reader.result);
+            });
+        });
+        // Start loading the file
+        reader.readAsDataURL(imageFile);
+        // Wait for the file to be loaded
+        const imageInput = await fileLoaded;
+        // Create card
+        const card = genCard(title, author, description, imageInput);
+        setCards([...cards, card]); // update state with new card
+        resetInputs();
+        // Asynchronously save to the database
+        await createOne('YOYOYO', card); // TO DO: fix title
+    } catch (error) {
+        console.error('Error processing data:', error);
+        // Handle error as needed
     }
+};
+
 
     const handleImageChange = (e) => { // chat, presumably makes image out of first file
         const selectedImage = e.target.files[0];
@@ -79,8 +98,8 @@ export default function CreateModal({show, handleClose, cards, setCards}) {
                             onChange={handleImageChange} >
                         </input>
                         {/* image preview pops up */}
-                        {image && getImagePreview(image)}
-                        <button onClick={() => onSubmitFn(title, author, description, image)}>
+                        {imageFile && getImagePreview(imageFile)}
+                        <button onClick={() => onSubmitFn(title, author, description, imageFile)}>
                             Submit
                         </button> 
                     </div>

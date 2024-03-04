@@ -1,3 +1,21 @@
+
+// const uploadFile = async(imageFile) => {
+//     try { //weird stuff again
+//         const toSend = {file: imageFile}
+//         const response = await fetch(`/api/upload`, { 
+//             cache: 'no-store',  
+//             method: 'POST' ,  //it was storing the GET request so I had to make it a post
+            
+//           })
+//         if (response.ok) {
+//             const toReceive = await response.json()
+//             const test = JSON.stringify(toReceive) // stringified?
+//             return test // should I return JSON? 
+//         }
+//     } catch (err) {
+//         console.log("error with fetching all cards", err)
+//     }
+// }
 const fetchAll = async () => {
     try { //weird stuff again
         const response = await fetch(`/api/cards`, { 

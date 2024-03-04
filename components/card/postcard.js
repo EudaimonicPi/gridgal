@@ -8,7 +8,7 @@ export default function SingleCard (props) {
 
     // says same thing every time
     const buttonText = "Learn More" // opens modal that has a broader view and longer description 
-
+//     console.log("CARD IMAGE IS ", card.image)
     return (
      <div className="cardContainer">
           <img src={card.image} className="cardPhoto"/>

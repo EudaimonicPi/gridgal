@@ -4,12 +4,11 @@ import Image from '@/public/vercel.svg'
 import { genCard } from '@/utils/cards'
 
 
-const IMAGE_DEFAULT = Image.src
+const IMAGE_DEFAULT = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj5Ytxod5EJvWA9oaS72-8QGRLHSiGK50tyiOV2ozaiQ&s"
 // had to put separately bc of POST stuff
-//CREATE
-// POST (creates a whole new grid that's blank)
+//CREATE, creates a card from cardInfo... 
 export const POST = async (request, { params }) => {
-  console.log("CAME IN HERE")
+  // console.log("CAME IN HERE")
 
   // from the request :) 
   const { cardInfo } = await request.json(); //title and not id
@@ -18,11 +17,12 @@ export const POST = async (request, { params }) => {
   const title = cardInfo.title
   const author = cardInfo.author
   const description = cardInfo.description
-  const image = cardInfo.image
+  // tryin to get an image that works 
+  const image = cardInfo.image // something wrong w the image on save and load perhaps
 
   // i think image needs to have the blob localhost thing
   const card = genCard(title, author, description, image)
-  console.log("CARD IS ", card)
+  // console.log("CARD IS ", card)
   const cardObj = new Card(card)
 
   try {
