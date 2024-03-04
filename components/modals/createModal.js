@@ -7,7 +7,7 @@ import Image from '@/public/vercel.svg'
 import { genCard } from '@/utils/cards'
 import { getImagePreview } from '@/utils/imageFn'
 import { createOne } from '@/utils/databaseFn'
-import { set } from 'mongoose';
+import { validateInput } from '@/utils/validateInput';
 
 const IMAGE_DEFAULT = Image.src
 
@@ -26,10 +26,39 @@ export default function CreateModal({show, handleClose, cards, setCards}) {
         handleClose();
     }
     
+    // clean this function the fuck up ;)
+function isInvalid(title, author, imageFile) {
 
+    if (!imageFile) {
+        return ["Please Upload an Image"]
+    }
+    //titles is fetching all of the titles.... cards.get titles
+    // authors don't have to be unique though... does uniqueness matter? 
+    const titleValid = validateInput(title)
+    const authorValid = validateInput(author)
+
+    if (titleValid.length === 0 && authorValid.length === 0) {
+        return []
+    } 
+
+    // desription can be empty but ned to design those guidelines :) 
+    if (!titleValid.length == 0) {
+        return titleValid
+    }
+    if (!authorValid.length == 0) {
+        return authorValid
+    }
+
+}
 
 const onSubmitFn = async (title, author, description, imageFile) => {
-    try { // thanks chat gpt!
+    // validation functions!!!
+    const validationArr = isInvalid(title, author,  imageFile)
+    if (!validationArr.length == 0) { 
+        console.log(validationArr[0])
+        return 
+    }
+    try { // thanks chat gpt !
         const reader = new FileReader();
 
         // Set up a promise to resolve when the reader has loaded the file
@@ -38,16 +67,16 @@ const onSubmitFn = async (title, author, description, imageFile) => {
                 resolve(reader.result);
             });
         });
-        // Start loading the file
-        reader.readAsDataURL(imageFile);
-        // Wait for the file to be loaded
-        const imageInput = await fileLoaded;
-        // Create card
+
+        reader.readAsDataURL(imageFile); // load the file
+        const imageInput = await fileLoaded; // wait for teh file to be loaded
+        if (typeof(imageInput) != 'blob') {
+            console.error("GOTCHA")
+        }
         const card = genCard(title, author, description, imageInput);
         setCards([...cards, card]); // update state with new card
         resetInputs();
-        // Asynchronously save to the database
-        await createOne('YOYOYO', card); // TO DO: fix title
+        await createOne('YOYOYO', card); // asynchronously save to db
     } catch (error) {
         console.error('Error processing data:', error);
         // Handle error as needed
