@@ -12,7 +12,7 @@ export default function ModalView({card, show, setShow}) {
             <Modal show={show} onHide={() => setShow(false)}>
                 {/* <div> ahls;kasgas</div> */}
                 <Modal.Header closeButton> 
-                <Modal.Title>  {card.title} info </Modal.Title>
+                <Modal.Title>  {card.title} Fractal Grids </Modal.Title>
                 </Modal.Header>      
                 <Modal.Body className="modal-container"> 
                     <div> Higher Res info</div>
