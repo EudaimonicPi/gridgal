@@ -5,7 +5,7 @@ import Header from '@/components/wholeApp/header'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Postagrid",
+  title: "PostaGrid",
   description: "Post Fractal Grids!",
 };
 
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
           <div>
             <div style={{flex: '1'}}>
-             <Header title={"Postagrid Gallery"} msg={'Post and View Fractal Grids From the Community!'}/>
+             <Header title={"PostaGrid Gallery"} msg={'Post and View Fractal Grids From the Community!'}/>
           </div>
 
           <div style={{flex: '9', padding: '2%'}}>
