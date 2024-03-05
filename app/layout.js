@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
           <div>
             <div style={{flex: '1'}}>
-             <Header title={"PostaGrid Gallery"} msg={'Post and View Fractal Grids From the Community!'}/>
+             <Header title={"PostaGrid Gallery"} msg={'Post and View Fractal Grids from the Community!'}/>
           </div>
 
           <div style={{flex: '9', padding: '2%'}}>
