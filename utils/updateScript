@@ -1,4 +1,4 @@
 git add .
-git commit -m "took out styling templates" 
+git commit -m "important style changes" 
 git branch -M main  
 git push -u origin main      

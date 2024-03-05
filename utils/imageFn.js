@@ -8,7 +8,7 @@ function getHugeImage(image) {
         //    src={URL.createObjectURL(image)} 
                 src={image} 
                 alt="Uploaded" 
-                style={{ width: '50%', marginTop: '10px' }} />
+                style={{ width: '100%', marginTop: '10px' }} />
     )
 }
 
