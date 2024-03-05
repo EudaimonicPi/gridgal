@@ -1,3 +1,4 @@
+import FGImage from '@/utils/fgman.png'
 // TO DO: export for decomp?
 const headerStyles = {
   backgroundColor: "#add8e6",
@@ -19,9 +20,15 @@ export default function Header(props) {
     return (
       <>
         <div style={headerStyles}>
-          <h1>
+          {/* <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', height: '50%'}}> */}
+             <img src={FGImage.src} style={{width: '10%', height: '10%', flex: 1}}/>
+            <h1 style={{flex: 3}}>
             <b>{title}</b>
-          </h1>
+            </h1>
+
+          {/* </div> */}
+          
+
           <p style={{ fontSize: "20px" }}> {msg} </p>
         </div>
       </>
