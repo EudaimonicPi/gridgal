@@ -7,7 +7,7 @@ import { fetchAll } from '@/utils/databaseFn'
 // import "./page.module.css";
 
 const cardContainerStyle = {
-  backgroundColor: 'pink',
+  // backgroundColor: 'pink',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-around',

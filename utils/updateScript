@@ -1,4 +1,4 @@
 git add .
-git commit -m "img fixed!" 
+git commit -m "took out styling templates" 
 git branch -M main  
 git push -u origin main      
