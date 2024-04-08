@@ -1,4 +1,4 @@
-import { connectDB } from "@/utils/mongodb/connect";
+import { connectDB, modConnectDB } from "@/utils/mongodb/connect";
 import { Card } from "@/utils/mongodb/models/card";
 import Image from '@/public/vercel.svg'
 import { genCard } from '@/utils/cards'
@@ -19,14 +19,15 @@ export const POST = async (request, { params }) => {
   const description = cardInfo.description
   // tryin to get an image that works 
   const image = cardInfo.image // something wrong w the image on save and load perhaps
+  const status = 'pending'
 
   // i think image needs to have the blob localhost thing
-  const card = genCard(title, author, description, image)
+  const card = genCard(title, author, description, image, status)
   // console.log("CARD IS ", card)
   const cardObj = new Card(card)
 
   try {
-    await connectDB();
+    await connectDB("testing create stuff");
     const newCard = await Card.create(cardObj);
     // console.log("NEW CARD IS ", newCard)
     
@@ -34,5 +35,24 @@ export const POST = async (request, { params }) => {
   } catch (err) {
     console.error("error in trying to create grid ");
     return new Response({status: 500})
+  }
+};
+
+
+export const DELETE = async (request, { params }) => {
+  // what does this do???
+  // const { title } = await request.json();
+
+  // how does it determine which grid to delete ahhh
+  const id = params.id //actually id not title
+   try {
+    await connectDB();
+    // console.log("HAS BEEN DELETED>>>", id)
+    // findById and remove seems useful!
+    await Card.deleteOne({ _id: id });
+    //responses
+    return new Response({ status: 200 });
+  } catch (err) {
+    return new Response({ status: 500 });
   }
 };

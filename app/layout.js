@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from '@/components/wholeApp/header'
+// import { useSession, signIn, signOut } from 'next-auth/react';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +20,7 @@ export default function RootLayout({ children }) {
             <div style={{flex: '1'}}>
              <Header title={"PostaGrid Gallery"} msg={'Post and View Fractal Grids from the Community!'}/>
           </div>
+            {/* <button onClick={() => signIn()}>sign in with gooogle</button> */}
 
           <div style={{flex: '9', padding: '2%'}}>
             {children}

@@ -1,4 +1,5 @@
 import FGImage from '@/utils/fgman.png'
+
 // TO DO: export for decomp?
 const headerStyles = {
   backgroundColor: "#add8e6",

@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react'
 import Card from '@/components/card/cardComponent'
 import CreateButton from '@/components/buttons/createButton'
 import CreateModal from '@/components/modals/createModal'
-import { fetchAll } from '@/utils/databaseFn'
+import { fetchAll } from '@/utils/dbFns/databaseFn'
+import CountryFlag from '@/components/misc/countryFlag';
+import { getCards } from '@/utils/cards'
+
+// import {noWIFIfetchedCards} from '@/utils/offline/data'
+
+
 // import "./page.module.css";
 
 const cardContainerStyle = {
@@ -14,15 +20,12 @@ const cardContainerStyle = {
   flexWrap: 'wrap',
   padding: '20px',
 }
-
+      
 export default function Home() {
   const [show, setShow] = useState(false) // show for the create button modal 
   const [cards, setCards] = useState([]) //card arr to store cards 
 
-  function getCards() {
-    // gets all the card elements, this is working I think, werid stuff w images tho
-    return cards.map((card) => <Card card={card}/>)
-  }
+  const [countryCode, setCountryCode] = useState('US') // is US okay default, or ahhhhhh? 
 
   useEffect(() => { // weird promise stuff ou non?
       // IIFE to create an asynchronous context
@@ -31,6 +34,8 @@ export default function Home() {
           // Use await inside the asynchronous function
           const fetchedCardsJSON = await fetchAll();
           const fetchedCards = JSON.parse(fetchedCardsJSON)
+
+
           setCards(fetchedCards); // omg it's so smart :) 
         } catch (error) {
           console.error('Error fetching cards:', error);
@@ -50,24 +55,14 @@ export default function Home() {
           show={show} 
           handleClose={() => setShow(false)} 
           cards={cards}
-          setCards={setCards}/>
-         
+          setCards={setCards}
+          countryCode={countryCode}
+          setCountryCode={setCountryCode}
+          />
+         {/* <CountryFlag countryCode={countryCode}/> */}
         <div style={cardContainerStyle}>
-          {getCards()} 
+          {getCards(cards)} 
         </div>
-
-    
-     
     </main>
   );
 }
-
-// cool stuff ab how images may render 
-{/*       
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              width={100}
-              height={24}
-              priority
-            /> */}
