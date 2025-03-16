@@ -2,7 +2,7 @@ import { updateStatus, deleteOne } from '@/utils/dbFns/databaseFn';
 
 const ADMIN_EMAILS = [
   "ecyking72345@gmail.com",
-  "rodkuhnking@gmail.com"
+  "rodkuhnhking@gmail.com"
   // "another.approved@email.com",
   // "someone.else@email.com"
 ];
