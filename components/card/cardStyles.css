@@ -1,5 +1,5 @@
 .cardContainer {
-  background: #fff;
+  /* background: #fff; */
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 16px;
@@ -27,31 +27,24 @@
   min-height: 20vh;
   max-height: 20vh;
 
-  overflow: scroll;
+  overflow: hidden;
   flex: 3;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardHeading {
-  /* flex: 1; */
-  /* background-color: pink; */
-  /* overflow: scroll; */
-  /* font-size: 1rem; */
-  /* margin-bottom: 8px; */
   font-size: 1.2rem;
   font-weight: bold;
+  flex: 1;
   margin: 10px 0;
 }
 
 .cardDescription {
-  /* flex: 3; */
-  /* background-color: yellow; */
-  /* font-size: 0.8rem; */
-  /* color: #555; */
-  /* overflow: scroll; */
-  /* margin-bottom: 16px; */
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  flex: 2;
   color: #555;
 }
 
@@ -66,6 +59,9 @@
   border-radius: 4px;
 }
 
+.cardFooter {
+  flex: 1;
+}
 .cardButton:hover {
   background-color: #4c0808;
 }

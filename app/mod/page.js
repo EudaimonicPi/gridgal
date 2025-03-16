@@ -2,6 +2,7 @@
 import {useState, useEffect} from 'react'
 import {getCards} from '@/utils/cards'
 import { fetchAll } from '@/utils/dbFns/databaseFn'
+import ProfilePic from '@/components/buttons/profilePic'
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
 const cardContainerStyle = {
   // backgroundColor: 'pink',
@@ -35,11 +36,13 @@ export default function Route({props}) {
 
    
     return <div>
+        <ProfilePic/>
         <p> Moderation: Approve, Defer, Decline</p>
-                    <div style={cardContainerStyle}>
-                        {/* May want to do variation on card or have additional component */}
-                        {getCards(cards, true)}
-                      </div>
+
+          <div style={cardContainerStyle}>
+              {/* May want to do variation on card or have additional component */}
+              {getCards(cards, true)}
+            </div>
 
     </div>
 }

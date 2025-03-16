@@ -16,7 +16,9 @@ export default function ProfilePic() {
     useEffect(() => {
         // is this what should be doing the pushing? anywho... 
     if (status === 'unauthenticated') {
+        router.push('/')
         return
+        // if it is any page other than the main gallery we should push
         // if page is mod if not right user RETURN /
     }
     }, [status, router]);
