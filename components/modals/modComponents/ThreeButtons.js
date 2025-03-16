@@ -12,6 +12,22 @@ function ModButton({ icon, color, onClick, label }) {
     );
 }
 
+function DeleteButton(props) {
+    const card = props.card
+    const mongoID = card._id // perfect for db schemes :) 
+    const title = card.title
+    const setShow = props.setShow
+    return (
+        <ModButton 
+                icon={faTrashCan} 
+                color={"red"} 
+                onClick={() => declineCard(title, mongoID, setShow)}
+                label={"delete"}
+        />
+        
+    )
+}
+
 // on click can also set show and give feedback to user and then also moderator
 export default function ThreeButtons(props) { // no use effect separate place to put db stuff
     const card = props.card
@@ -42,8 +58,8 @@ export default function ThreeButtons(props) { // no use effect separate place to
                 onClick={() => console.log("No action taken")}
                 label="Defer"
             />
-       
-
         </div>
 
 )}
+
+export {ModButton, DeleteButton}

@@ -50,8 +50,7 @@ export default function Route({props}) {
           return permissionToView? (
         <div>
           <ProfilePic />
-          <p> Moderation: Approve, Defer, Decline</p>
-
+          <p> Moderation: Approve, Defer, Decline. Note: as of now, one needs to refresh to see changes. This is being worked on. </p>
           <div style={cardContainerStyle}>
             {getCards(cards, true)}
           </div>

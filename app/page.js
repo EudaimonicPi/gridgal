@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import Card from '@/components/card/cardComponent'
+// import Card from '@/components/card/cardComponent'
 import CreateButton from '@/components/buttons/createButton'
 import CreateModal from '@/components/modals/createModal'
 import { fetchAll } from '@/utils/dbFns/databaseFn'

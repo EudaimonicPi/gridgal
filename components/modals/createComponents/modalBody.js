@@ -23,7 +23,6 @@ export default function ModalBody({handleClose, cards, setCards, countryCode, se
 
     const [title, setTitle] = useState('') // title 
     // author will be form useSession email :) 
-    // const [author, setAuthor] = useState('') // title 
     const [description, setDescription] = useState('') // title 
     const [imageFile, setImage] = useState(null);
     const [err, setErr] = useState('')
@@ -32,18 +31,19 @@ export default function ModalBody({handleClose, cards, setCards, countryCode, se
     
     // TODO: error fixing, to put in useEffect oopsie!
     const author = data? data.user.email: null // osmethin went wrong or i did
+    const authorImage = data? data.user.image: null
+    console.log("AUTHOR image IS ", authorImage)
 
 
     function resetInputs() {
         setTitle('');
-        setAuthor('');
         setDescription('');
         setImage(null);
         handleClose();
     }
     
 
-const onSubmitFn = async (title, author, description, imageFile) => {
+const onSubmitFn = async (title, author, description, imageFil, authorImage=null) => {
     // validation functions!!!
     let validationArr = isInvalid(title, author,  imageFile)
     if (!validationArr.length == 0) { 
@@ -71,7 +71,7 @@ const onSubmitFn = async (title, author, description, imageFile) => {
         }
 
         // generates a new card 
-        const card = genCard(title, author, description, imageInput);
+        const card = genCard(title, author, description, imageInput, authorImage);
 
         // here's what i SHOULDN'T BE DOING! we don't want this because card has to go for mod approval!
         // setCards([...cards, card]); // update state with new card instead, mod approval message
@@ -122,7 +122,7 @@ const onSubmitFn = async (title, author, description, imageFile) => {
                 <p> Where was the grid made? </p>
                     <CountrySelect setCountryCode={setCountryCode}/>
 
-                        <button onClick={() => onSubmitFn(title, author, description, imageFile)}>
+                        <button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}>
                             Submit
                         </button> 
                         <p style={{color: 'red', marginTop: "1%"}}>{isErr && err}</p>

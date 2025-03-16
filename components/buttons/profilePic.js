@@ -25,7 +25,7 @@ export default function ProfilePic() {
 
     if (status === 'loading') return // other pages take care of their loading symbol
     if (status === 'authenticated') {
-        const admin = isAdmin(data.user.email)
+        const admin = isAdmin(data.user.email) 
         return ( // this is the lil profile component
             <div style={imageContainerStyles}>
                     <Dropdown>
@@ -36,6 +36,8 @@ export default function ProfilePic() {
                         <Dropdown.Item disabled> {data.user.name} </Dropdown.Item>
                         <Dropdown.Item onClick={signOut}>Sign Out</Dropdown.Item>
                         {admin && <Dropdown.Item onClick={() => router.push('/mod')}>Mod</Dropdown.Item>}
+                        {admin && <Dropdown.Item onClick={() => router.push('/')}>Home</Dropdown.Item>}
+                        {admin && <Dropdown.Item onClick={() => router.push('/profile')}>Profile Page [DRAFT]</Dropdown.Item>}
                     </Dropdown.Menu>
                     </Dropdown>
             </div>

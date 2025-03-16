@@ -1,27 +1,62 @@
-//npm i boostrap react-boostrap
+// also the mod modal 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { getHugeImage } from '@/utils/imageFn'
-import CountryFlag from '@/components/misc/countryFlag';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faFlag, faCheck, faHourglass, faX, faTrashCan} from '@fortawesome/free-solid-svg-icons'
 import { CurrentUserImage, UserImage } from '@/components/buttons/icons';
 
 //for styling purposes. essential? 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { acceptCard, deleteCard } from '@/utils/modFns';
 import ModalHeader from './createComponents/modalHeader';
-import ThreeButtons from './modComponents/ThreeButtons';
+import ThreeButtons, { DeleteButton, ModButton } from './modComponents/ThreeButtons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { isAdmin } from '@/utils/modFns';
+import { useSession } from 'next-auth/react';
+
+
 
 // for moderation and more!
 export default function ModalView({card, show, setShow, countryCode, mod}) {
-    const name = "TEST NAME" // eventually, cards have names from the db
+    const {data, status } = useSession()
+    const name = card.author // eventually, cards have names from the db
     const onClick = () => { console.log("modal clicked!")}
-    const image = 'next.svg'
+    const image = card.authorImage? card.authorImage :'next.svg'
     const headerTitle = card.title + " Fractal Grid"
     const currentUser= false
 
+    // TODO: note asuming authenticated!!!
+    const admin = isAdmin(data.user.email)
 
+    // if we are on the main page (not mod) and admin, can delete any grid 
+    function ExtraDelete() {
+        if (mod) return 
+        // if not admin || snot data.user.email === card.author 
+        if (!admin) return // this should be not possible though? 
+
+        // if grid is yours, delete button :) 
+        return (<DeleteButton card={card} setShow={setShow}/>)
+    }
+
+
+    function MoreModalFooter() {
+    return (
+        <Modal.Footer>
+         <div>
+            {/* can delete means either is admin or card author matches current user */}
+            <ExtraDelete/>
+        </div>
+
+{/* could potentiall put {card.name} but rn that's email */}
+        <div> made by  </div>
+        <div >
+                {currentUser && <CurrentUserImage/>}
+                {!currentUser && <UserImage name={name} image={image} onClick={onClick}/>}
+        </div>
+        
+        <Button variant="primary" onClick={() => setShow(close)}>
+            Close
+        </Button> 
+        </Modal.Footer>
+    )
+}
     return (
             <Modal show={show} onHide={() => setShow(false)}>
                 <ModalHeader title={headerTitle} currentUser={false}
@@ -32,17 +67,7 @@ export default function ModalView({card, show, setShow, countryCode, mod}) {
                     {card.description}
                     {mod && <ThreeButtons card={card} setShow={setShow}/>}
                 </Modal.Body>
-                
-                <Modal.Footer>
-                    <div> made by {card.author} </div>
-                    <div >
-                            {currentUser && <CurrentUserImage/>}
-                            {!currentUser && <UserImage name={name} image={image} onClick={onClick}/>}
-                  </div>
-
-                    <Button variant="primary" onClick={() => setShow(close)}>
-                        Close
-                    </Button> 
-                </Modal.Footer>
+                {/*  TO DO: add props and abstract away */}
+                <MoreModalFooter/>
             </Modal>
     )}

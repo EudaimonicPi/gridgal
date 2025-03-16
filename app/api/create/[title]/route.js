@@ -20,9 +20,9 @@ export const POST = async (request, { params }) => {
   // tryin to get an image that works 
   const image = cardInfo.image // something wrong w the image on save and load perhaps
   const status = 'pending'
-
+  const authorImage = cardInfo.authorImage? cardInfo.authorImage: IMAGE_DEFAULT
   // i think image needs to have the blob localhost thing
-  const card = genCard(title, author, description, image, status)
+  const card = genCard(title, author, description, image, authorImage, status)
   // console.log("CARD IS ", card)
   const cardObj = new Card(card)
 

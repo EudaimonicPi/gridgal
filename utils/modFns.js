@@ -20,9 +20,8 @@ const declineCard = (title, mongoID, setShow) => {
         console.log("WE HAVE DELETED THE CARD")
 }
 
-
-
 const isAdmin = (email) => {
   return ADMIN_EMAILS.includes(email);
 };
+
 export {acceptCard, declineCard, isAdmin}

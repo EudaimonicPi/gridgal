@@ -8,7 +8,9 @@ const IMAGE_DEFAULT = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj5
 // had to put separately bc of POST stuff
 //CREATE, creates a card from cardInfo... 
 // maybe this can be UPDATE? 
+// NOTE: OBSOLETE!!!
 export const POST = async (request, { params }) => {
+  console.log("WARNING somethnig i thought obsolte not (card/title api route path post")
 
   // from the request :) 
   const { cardInfo } = await request.json(); //title and not id

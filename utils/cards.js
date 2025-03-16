@@ -1,11 +1,10 @@
 import Card from '@/components/card/cardComponent'
 
-const genCard = (title, author, description, image, status='pending') => { 
-        return {title, author, description, image, status}
+const genCard = (title, author, description, image, authorImage, status='pending',) => { 
+        return {title, author, description, image, status, authorImage}
 }
 
 function getCards(cards, mod=false) {
-        // console.log("CARDS ", cards)
         // gets all the card element
         // each id is the mongo id generated
         return cards.map((card) => <Card  card={card} mod={mod}/>)
