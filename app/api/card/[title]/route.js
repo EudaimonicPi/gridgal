@@ -13,19 +13,6 @@ export const POST = async (request, { params }) => {
   // from the request :) 
   const { cardInfo } = await request.json(); //title and not id
 
-  // hopefully we'd just get the id or title here... 
-
-  // // console.log("TITLE ","CARD ",  cardInfo.author)
-  // const title = cardInfo.title
-  // const author = cardInfo.author
-  // const description = cardInfo.description
-  // // tryin to get an image that works 
-  // const image = cardInfo.image // something wrong w the image on save and load perhaps
-  // let mod = cardInfo.mod !== undefined? cardInfo.mod: false // if it is do something 
-  
-
-  // console.log("CARD INFO MODDED IS ", mod)
-  
 
   // i think image needs to have the blob localhost thing
   const card = genCard(title, author, description, image)

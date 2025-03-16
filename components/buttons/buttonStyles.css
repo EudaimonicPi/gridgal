@@ -33,6 +33,18 @@
   top: 3%;
   left: 10%;
 }
+
+.second-right {
+  background-color: white;
+  color: black;
+  position: absolute;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  top: 3%;
+  right: 10%;
+}
+
 .left-icon {
   color: black;
   padding: 5px 15px;

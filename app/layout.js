@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from '@/components/wholeApp/header'
-// import { useSession, signIn, signOut } from 'next-auth/react';
+import NextAuthSessionProvider from "@/providers/SessionProvider";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body className={inter.className}>
+         <NextAuthSessionProvider >
           <div>
             <div style={{flex: '1'}}>
              <Header title={"PostaGrid Gallery"} msg={'Post and View Fractal Grids from the Community!'}/>
@@ -26,6 +28,7 @@ export default function RootLayout({ children }) {
             {children}
           </div>
         </div>
+        </NextAuthSessionProvider>
         </body>
     </html>
   );

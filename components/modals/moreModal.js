@@ -10,23 +10,24 @@ import { faUser, faFlag, faCheck, faHourglass, faX, faTrashCan} from '@fortaweso
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { updateStatus, deleteOne } from '@/utils/dbFns/databaseFn';
 
-const acceptCard = (title, mongoID) => {
+const acceptCard = (title, mongoID, setShow) => {
         updateStatus(title, mongoID)
         console.log("WE HAVE ACCEPTED THE CARD")
-        //somehow reset stuff idk? 
+        setShow(false) // closes modal, resets hopefully!
 }
 
-const declineCard = (title, mongoID) => {
-    console.log("title and mongo id are", title, mongoID)
+const declineCard = (title, mongoID, setShow) => {
+        console.log("title and mongo id are", title, mongoID)
         deleteOne(title, mongoID)
+        setShow(false) // closes modal, resets hopefully! doesn't trigger reset
         console.log("WE HAVE DELETED THE CARD")
-        //somehow reset stuff idk? 
 }
 // pass in onAccept, onReject, onDefer
 function ThreeButtons(props) { // no use effect separate place to put db stuff
     const card = props.card
     const mongoID = card._id // perfect for db schemes :) 
     const title = card.title
+    const setShow = props.setShow
     // console.log("Cards ", card, mongoID)
     return (
 
@@ -37,14 +38,14 @@ function ThreeButtons(props) { // no use effect separate place to put db stuff
                 icon={faCheck} 
                 className="smol-button" 
                 style={{width: '10%'}}
-                onClick={() => acceptCard(title, mongoID)}
+                onClick={() => acceptCard(title, mongoID, setShow)}
             />
             {/* on on click, delete from mongo database */}
             <FontAwesomeIcon 
                 icon={faTrashCan} 
                 className="user-icon" 
                 style={{width: '10%'}}
-                onClick={() => declineCard(title, mongoID)}
+                onClick={() => declineCard(title, mongoID, setShow)}
             />
             {/* on click leave alone */}
             <FontAwesomeIcon 
@@ -82,7 +83,7 @@ export default function ModalView({card, show, setShow, countryCode, mod}) {
                 <Modal.Footer>
                     
                     <div> made by {card.author} </div>
-                    {mod && <ThreeButtons card={card}/>}
+                    {mod && <ThreeButtons card={card} setShow={setShow}/>}
 
                 <Button variant="primary" onClick={() => setShow(close)}>
                     Close

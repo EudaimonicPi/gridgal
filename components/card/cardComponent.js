@@ -2,6 +2,7 @@
 import { useState} from 'react';
 import CardView from '@/components/card/singleCard'
 import ModalView from '@/components/modals/moreModal'
+
 export default function CardComponent({card, mod}) {
     const [show, setShow] = useState(false)
     const [countryCode, setCountryCode] = useState('US') // is US okay default, or ahhhhhh? 

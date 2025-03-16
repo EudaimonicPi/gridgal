@@ -6,7 +6,7 @@ import { faPlus} from '@fortawesome/free-solid-svg-icons'
 
 export default function CreateButton (props) {
     return (
-        <div className='right-button' onClick={props.handleClick}>
+        <div className='second-right' onClick={props.handleClick}>
                 {/* CREATE */}
                 <FontAwesomeIcon icon={faPlus} />
         </div>

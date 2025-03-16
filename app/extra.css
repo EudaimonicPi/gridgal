@@ -1,0 +1,22 @@
+.left-icon {
+  color: black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  /* left: 3%; */
+}
+
+.left-button {
+  /* background-color: lightgreen; */
+  background-color: lightcoral;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+}
