@@ -56,6 +56,13 @@
   /* left: 3%; */
 }
 
+.icon {
+  color: black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+}
 .left-button {
   /* background-color: lightgreen; */
   background-color: lightcoral;

@@ -11,7 +11,7 @@ export default function SignInButton() {
         }
     return (
       <div>
-        <button className="left-icon" onClick={() => signIn()}>sign In</button>
+        <button className="left-icon" onClick={() => signIn()}>sign in</button>
       </div>
   );
 

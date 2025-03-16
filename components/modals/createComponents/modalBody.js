@@ -11,12 +11,17 @@ import { createOne } from '@/utils/dbFns/databaseFn'
 import {isInvalid } from '@/utils/validateInput';
 // import { faPlus} from '@fortawesome/free-solid-svg-icons'
 import CountrySelect from '@/components/misc/countryDropdown'
-import {ImageInput, TextInput, BigTextInput} from '@/components/modals/subComponents/inputs'
 import { useSession } from 'next-auth/react';
-
+import Inputs from './body/createInputs';
 const IMAGE_DEFAULT = Image.src
 
-
+const iconStyles = {
+    color: "black",
+    padding: "5px 15px",
+    borderRadius: "5px",
+    cursor: "pointer",
+    // position: "absolute"
+  }
 
 // TODO: decomp
 export default function ModalBody({handleClose, cards, setCards, countryCode, setCountryCode}) {
@@ -43,7 +48,7 @@ export default function ModalBody({handleClose, cards, setCards, countryCode, se
     }
     
 
-const onSubmitFn = async (title, author, description, imageFil, authorImage=null) => {
+const onSubmitFn = async (title, author, description, imageFile, authorImage=null) => {
     // validation functions!!!
     let validationArr = isInvalid(title, author,  imageFile)
     if (!validationArr.length == 0) { 
@@ -93,40 +98,25 @@ const onSubmitFn = async (title, author, description, imageFil, authorImage=null
                 <Modal.Body> 
                     {/* NOTE: eventually clean up white space and stuff*/}
                     <div>
-       
-                        {/* <p>Name Your Grid (unique)</p> */}
-                        <ImageInput
-                            label="Upload Image"
-                            onChange={(e) => handleImageChange(e)}
-                        />
-
-                        <TextInput
-                            label="Title"
-                            type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder={"Name Your Grid"}
-                        />  
-
-                        <BigTextInput
-                            label="Grid Description"
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />  
-
+                        <Inputs 
+                                    handleImageChange={handleImageChange}
+                                    title={title}
+                                    setTitle={setTitle}
+                                    description={description}
+                                     setDescription={setDescription}/>
                         {/*THIS IS THE PREVIEW */}
                         {imageFile && getImagePreview(imageFile)}
-
                 {/* This should be tied to the user in future, right? like where they are based  */}
                 <p> Where was the grid made? </p>
                     <CountrySelect setCountryCode={setCountryCode}/>
-
-                        <button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}>
-                            Submit
-                        </button> 
+                    <button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}
+                    style={iconStyles}>
+                        Submit
+                    </button> 
+                     
                         <p style={{color: 'red', marginTop: "1%"}}>{isErr && err}</p>
                     </div>
+
                 </Modal.Body>      
   );
 }

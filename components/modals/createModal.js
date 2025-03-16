@@ -24,6 +24,11 @@ export default function CreateModal({show, handleClose, cards, setCards, country
                     countryCode={countryCode}
                     setCountryCode={setCountryCode}
                 />
+                <Modal.Footer>
+                                        <text style={{color: 'gray'}}>
+                        NOTE: after submitting, the grid will go to the database for moderator approval.
+                    </text>
+                </Modal.Footer>
             </Modal>
   );
 }
