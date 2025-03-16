@@ -12,19 +12,27 @@ import {isInvalid } from '@/utils/validateInput';
 // import { faPlus} from '@fortawesome/free-solid-svg-icons'
 import CountrySelect from '@/components/misc/countryDropdown'
 import {ImageInput, TextInput, BigTextInput} from '@/components/modals/subComponents/inputs'
+import { useSession } from 'next-auth/react';
 
 const IMAGE_DEFAULT = Image.src
 
 
 
-// function /
+// TODO: decomp
 export default function ModalBody({handleClose, cards, setCards, countryCode, setCountryCode}) {
+
     const [title, setTitle] = useState('') // title 
-    const [author, setAuthor] = useState('') // title 
+    // author will be form useSession email :) 
+    // const [author, setAuthor] = useState('') // title 
     const [description, setDescription] = useState('') // title 
     const [imageFile, setImage] = useState(null);
     const [err, setErr] = useState('')
     const [isErr, setIsErr] = useState(false)
+    const {data, status} = useSession()
+    
+    // TODO: error fixing, to put in useEffect oopsie!
+    const author = data? data.user.email: null // osmethin went wrong or i did
+
 
     function resetInputs() {
         setTitle('');

@@ -4,6 +4,7 @@ import {getCards} from '@/utils/cards'
 import { fetchAll } from '@/utils/dbFns/databaseFn'
 import ProfilePic from '@/components/buttons/profilePic'
 import { useSession } from 'next-auth/react';
+import { isAdmin } from '@/utils/modFns'
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
 const cardContainerStyle = {
   // backgroundColor: 'pink',
@@ -15,16 +16,7 @@ const cardContainerStyle = {
 }
 
 
-const approvedEmails = [
-  "ecyking72345@gmail.com",
-  "rodkuhnking@gmail.com"
-  // "another.approved@email.com",
-  // "someone.else@email.com"
-];
 
-const isApprovedEmail = (email) => {
-  return approvedEmails.includes(email);
-};
 
 
 export default function Route({props}) {
@@ -32,7 +24,7 @@ export default function Route({props}) {
     const {data, status} = useSession()
 
     const email = data? data.user.email: null
-    const isApproved= isApprovedEmail(email)
+    const isApproved= isAdmin(email)
     const permissionToView = status === "authenticated" && isApproved 
 
     // note: eval is not valid function name LOL 

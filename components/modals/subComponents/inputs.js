@@ -31,17 +31,19 @@ function BigTextInput({ label, value, onChange }) {
     return (
         <div>
             <p>{label}</p>
-            <input
-                type="text"
+            <textarea
                 value={value}
                 onChange={onChange}
                 style={{ 
-
-                width: '100%',
-                height: '100px', //what's wrong w height
-                marginBottom: '5%',
-                // height: "100px",
-            }}
+                    width: '100%',
+                    height: '100px',
+                    marginBottom: '5%',
+                    resize: 'none', /* Prevents resizing */
+                    textAlign: 'start', /* Ensures text starts from the left */
+                    verticalAlign: 'top', /* Keeps cursor at the top */
+                    padding: '8px', /* Adds spacing inside the box */
+                    boxSizing: 'border-box' /* Ensures padding doesn't affect width */
+                }}
             />
         </div>
     );

@@ -1,18 +1,8 @@
-.user-icon-container {
+.modal-title {
   display: flex;
+  width: 100%;
+  height: 100%;
   align-items: center;
-}
-
-.user-icon {
-  font-size: 18px; /* Adjust the size as needed */
-  color: #555; /* Change the color if desired */
-  border-radius: 50%; /* Makes it round */
-  background-color: #ccc; /* Background color for the circle */
-  padding: 6px; /* Adjust padding as needed */
-  margin-left: 20%; /* Adjust margin as needed */
-}
-
-.user-icon:hover {
-  color: white;
-  background-color: black;
+  justify-content: center;
+  gap: 8px;
 }

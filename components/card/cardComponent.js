@@ -1,6 +1,6 @@
 'use client'
 import { useState} from 'react';
-import CardView from '@/components/card/singleCard'
+import CardView from '@/components/card/cardView/singleCard'
 import ModalView from '@/components/modals/moreModal'
 
 export default function CardComponent({card, mod}) {

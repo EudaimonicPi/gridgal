@@ -1,14 +1,7 @@
-// This function generates the layout for a single card display
-'use client'
-import {useState} from 'react'
+import { UserImage } from '../../buttons/icons';
 import './cardStyles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faFlag, faPen} from '@fortawesome/free-solid-svg-icons'
-import UserModal from '../modals/profileModal';
-import UserImage from '../buttons/icons';
 
 // TO DO: standardize size of image!
-const BUTTON_TEXT = "More"
 const MAX_CHARS = 60
 
 function CardHeading({title}) {
@@ -53,23 +46,4 @@ function CardFooter({image, name, setShowUserM}) {
      )
 }
 
-export default function SingleCard (props) {
-     const [showUserM, setShowUserM] = useState(false)
-     const setShow = props.setShow
-     const card = props.card
-     const image = "next.svg" // TO BE card.image
-     const name = "TEST"
-    console.log("CARD IMAGE IS ", card.image)
-
-    return (
-     <div className="cardContainer" style={{backgroundColor: '#ddd'}} onClick={() => setShow(true)}>
-          <CardImage image={card.image}/>
-          <div className="cardContent">
-               <CardHeading title={card.title}/>
-               <CardDescription description={card.description}/>
-             <CardFooter image={image} name={name} setShowUserM={setShowUserM}/>
-          </div>
-          <UserModal show={showUserM} setShow={setShowUserM}/>
-     </div>
-    )
-}
+export { CardHeading, CardImage, CardDescription,CardFooter }

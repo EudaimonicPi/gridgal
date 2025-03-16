@@ -28,7 +28,7 @@ const createOne = async (title, card, mod=false) => {
 
     // in this case sent obj and param are same
     // console.log("YOU MADE IT INTO THE SAVE FN!!")
-    const toSend = JSON.stringify({ cardInfo: card, mod: mod })
+    const toSend = JSON.stringify({ cardInfo: card, mod: mod})
     try {
       const response = await fetch(`/api/create/${title}`,
         {

@@ -6,16 +6,16 @@ import Image from '@/public/vercel.svg'
 import ModalHeader from './createComponents/modalHeader';
 import ModalBody from './createComponents/modalBody'
 
-const IMAGE_DEFAULT = Image.src
 
+const IMAGE_DEFAULT = Image.src
 
 
 // function /
 export default function CreateModal({show, handleClose, cards, setCards, countryCode, setCountryCode}) {
 
     return (
-            <Modal show={show} onHide={handleClose}>
-                <ModalHeader setCountryCode={setCountryCode}/>
+            <Modal show={show} onHide={handleClose} >
+                <ModalHeader title={"Add grid to gallery"} currentUser={true} setCountryCode={setCountryCode}/>
                 <ModalBody 
                 // check to see which ones in use!
                     handleClose={handleClose}

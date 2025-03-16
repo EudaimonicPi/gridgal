@@ -29,12 +29,12 @@ export default function UserModal({user, show, setShow}) {
                          </div>
                 </Modal.Header>      
                 <Modal.Body className="modal-container"> 
-                user stuff :) 
+                User Details to be added :)
                 {/* Things to include: navigate to profile page, user name, bio, grids, etc.. */}
                 </Modal.Body>
                 
                 <Modal.Footer>
-                    <div> made by hmm.... </div>
+                    <div> made by a mystery </div>
                     <Button variant="primary" onClick={() => setShow(close)}>
                     Close
                  </Button> 

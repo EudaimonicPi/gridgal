@@ -5,6 +5,7 @@ const genCard = (title, author, description, image, status='pending') => {
 }
 
 function getCards(cards, mod=false) {
+        // console.log("CARDS ", cards)
         // gets all the card element
         // each id is the mongo id generated
         return cards.map((card) => <Card  card={card} mod={mod}/>)

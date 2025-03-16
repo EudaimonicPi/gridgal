@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import {imageContainerStyles, userImageStyles} from './loginStyles'
 import { Dropdown } from 'react-bootstrap';
 import { signOut } from 'next-auth/react';
-
+import { isAdmin } from '@/utils/modFns';
 
 export default function ProfilePic() {
     const {data, status} = useSession()
@@ -25,6 +25,7 @@ export default function ProfilePic() {
 
     if (status === 'loading') return // other pages take care of their loading symbol
     if (status === 'authenticated') {
+        const admin = isAdmin(data.user.email)
         return ( // this is the lil profile component
             <div style={imageContainerStyles}>
                     <Dropdown>
@@ -34,6 +35,7 @@ export default function ProfilePic() {
                     <Dropdown.Menu>
                         <Dropdown.Item disabled> {data.user.name} </Dropdown.Item>
                         <Dropdown.Item onClick={signOut}>Sign Out</Dropdown.Item>
+                        {admin && <Dropdown.Item onClick={() => router.push('/mod')}>Mod</Dropdown.Item>}
                     </Dropdown.Menu>
                     </Dropdown>
             </div>

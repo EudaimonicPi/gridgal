@@ -13,6 +13,7 @@ const imageContainerStyles = { //gpt gen
 
 const userImageStyles = { //gpt gen
     borderRadius: '50%', // Makes the image circular
+    // Make size dynamix!
     width: '30px', // Adjust the size as needed
     height: '30px', // Ensure it's a perfect square
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Adds a soft shadow for depth
