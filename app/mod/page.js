@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import {getCards} from '@/utils/cards'
 import { fetchAll } from '@/utils/dbFns/databaseFn'
 import ProfilePic from '@/components/buttons/profilePic'
+import { useSession } from 'next-auth/react';
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
 const cardContainerStyle = {
   // backgroundColor: 'pink',
@@ -14,8 +15,26 @@ const cardContainerStyle = {
 }
 
 
+const approvedEmails = [
+  "ecyking72345@gmail.com",
+  "rodkuhnking@gmail.com"
+  // "another.approved@email.com",
+  // "someone.else@email.com"
+];
+
+const isApprovedEmail = (email) => {
+  return approvedEmails.includes(email);
+};
+
+
 export default function Route({props}) {
     const [cards, setCards] = useState([]) //card arr to store cards 
+    const {data, status} = useSession()
+
+    const email = data? data.user.email: null
+    const isApproved= isApprovedEmail(email)
+    const permissionToView = status === "authenticated" && isApproved 
+
     // note: eval is not valid function name LOL 
 
     // use Effect to fetdh cards from MOD database 
@@ -35,14 +54,17 @@ export default function Route({props}) {
 
 
    
-    return <div>
-        <ProfilePic/>
-        <p> Moderation: Approve, Defer, Decline</p>
+    // return (
+          return permissionToView? (
+        <div>
+          <ProfilePic />
+          <p> Moderation: Approve, Defer, Decline</p>
 
           <div style={cardContainerStyle}>
-              {/* May want to do variation on card or have additional component */}
-              {getCards(cards, true)}
-            </div>
+            {getCards(cards, true)}
+          </div>
+        </div>
+      ) : null // If not authenticated, return nothing
+        // )
 
-    </div>
 }
