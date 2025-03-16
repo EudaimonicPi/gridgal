@@ -22,8 +22,10 @@ export default function ModalView({card, show, setShow, countryCode, mod}) {
     const headerTitle = card.title + " Fractal Grid"
     const currentUser= false
 
+
     // TODO: note asuming authenticated!!!
-    const admin = isAdmin(data.user.email)
+    const admin = data? isAdmin(data.user.email): false
+    
 
     // if we are on the main page (not mod) and admin, can delete any grid 
     function ExtraDelete() {
