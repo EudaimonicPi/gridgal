@@ -17,7 +17,7 @@ import { Button } from 'react-bootstrap';
 const IMAGE_DEFAULT = Image.src
 
 const iconStyles = {
-    color: "black",
+    color: "white",
     padding: "5px 15px",
     borderRadius: "5px",
     cursor: "pointer",
@@ -25,7 +25,7 @@ const iconStyles = {
   }
 
 // TODO: decomp
-export default function ModalBody({handleClose, cards, setCards}) {
+export default function ModalBody({handleClose, cards, setCards, setConfirmShow}) {
 
     const [title, setTitle] = useState('') // title 
     // author will be form useSession email :) 
@@ -33,7 +33,6 @@ export default function ModalBody({handleClose, cards, setCards}) {
     const [imageFile, setImage] = useState(null);
     const [err, setErr] = useState('')
     const [isErr, setIsErr] = useState(false)
-    const [confirmModal, setConfirmModal ] = useState(false)
     const {data, status} = useSession()
     
     // TODO: error fixing, to put in useEffect oopsie!
@@ -46,6 +45,7 @@ export default function ModalBody({handleClose, cards, setCards}) {
         setTitle('');
         setDescription('');
         setImage(null);
+        setConfirmShow(true)
         handleClose();
     }
     
@@ -84,7 +84,6 @@ const onSubmitFn = async (title, author, description, imageFile, authorImage=nul
         // setCards([...cards, card]); // update state with new card instead, mod approval message
 
         resetInputs();
-        setConfirmModal(true)
         await createOne('YOYOYO', card); // asynchronously save to db
     } catch (error) {
         console.error('Error processing data:', error);

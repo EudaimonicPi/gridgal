@@ -11,7 +11,8 @@ const IMAGE_DEFAULT = Image.src
 
 
 // function /
-export default function CreateModal({show, handleClose, cards, setCards, countryCode, setCountryCode}) {
+export default function CreateModal({show, handleClose, cards, setCards, countryCode, 
+    setCountryCode, setConfirmShow}) {
 
     return (
             <Modal show={show} onHide={handleClose} >
@@ -23,6 +24,9 @@ export default function CreateModal({show, handleClose, cards, setCards, country
                     setCards={setCards}
                     countryCode={countryCode}
                     setCountryCode={setCountryCode}
+                    setConfirmShow={setConfirmShow}
+                    
+                    
                 />
                 <Modal.Footer>
                                         <text style={{color: 'gray'}}>

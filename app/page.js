@@ -11,6 +11,7 @@ import "./extra.css";
 import SignInButton from '@/components/buttons/signIn'
 import ProfilePic from '@/components/buttons/profilePic'
 import { LoadingPage } from '@/components/loading/login'
+import ConfirmModal from '@/components/modals/confirmModal'
 
 
 const cardContainerStyle = {
@@ -21,10 +22,13 @@ const cardContainerStyle = {
   justifyContent: "center",
 };
 
+
 export default function Home() {
   const [show, setShow] = useState(false) // show for the create button modal 
   const [cards, setCards] = useState([]) //card arr to store cards 
   const [isLoading, setLoading] = useState(true)
+  const [confirmModalShow, setConfirmModalShow] = useState(false)
+
 
   const [countryCode, setCountryCode] = useState('US') // is US okay default, or ahhhhhh? 
   const { data, status } = useSession();
@@ -63,6 +67,7 @@ export default function Home() {
         <ProfilePic/>
 
         {/* This button allows you to create new cards */}
+        <ConfirmModal show={confirmModalShow} handleClose={() => setConfirmModalShow(false)}/>
         <CreateModal 
           show={show} 
           handleClose={() => setShow(false)} 
@@ -70,6 +75,7 @@ export default function Home() {
           setCards={setCards}
           countryCode={countryCode}
           setCountryCode={setCountryCode}
+          setConfirmShow={setConfirmModalShow}
           />
          {/* <CountryFlag countryCode={countryCode}/> */}
         <div style={cardContainerStyle}>
