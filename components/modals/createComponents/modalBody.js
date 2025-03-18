@@ -10,9 +10,10 @@ import { getImagePreview } from '@/utils/imageFn'
 import { createOne } from '@/utils/dbFns/databaseFn'
 import {isInvalid } from '@/utils/validateInput';
 // import { faPlus} from '@fortawesome/free-solid-svg-icons'
-import CountrySelect from '@/components/misc/countryDropdown'
+// import CountrySelect from '@/components/misc/countryDropdown'
 import { useSession } from 'next-auth/react';
 import Inputs from './body/createInputs';
+import { Button } from 'react-bootstrap';
 const IMAGE_DEFAULT = Image.src
 
 const iconStyles = {
@@ -24,7 +25,7 @@ const iconStyles = {
   }
 
 // TODO: decomp
-export default function ModalBody({handleClose, cards, setCards, countryCode, setCountryCode}) {
+export default function ModalBody({handleClose, cards, setCards}) {
 
     const [title, setTitle] = useState('') // title 
     // author will be form useSession email :) 
@@ -32,6 +33,7 @@ export default function ModalBody({handleClose, cards, setCards, countryCode, se
     const [imageFile, setImage] = useState(null);
     const [err, setErr] = useState('')
     const [isErr, setIsErr] = useState(false)
+    const [confirmModal, setConfirmModal ] = useState(false)
     const {data, status} = useSession()
     
     // TODO: error fixing, to put in useEffect oopsie!
@@ -82,6 +84,7 @@ const onSubmitFn = async (title, author, description, imageFile, authorImage=nul
         // setCards([...cards, card]); // update state with new card instead, mod approval message
 
         resetInputs();
+        setConfirmModal(true)
         await createOne('YOYOYO', card); // asynchronously save to db
     } catch (error) {
         console.error('Error processing data:', error);
@@ -108,14 +111,14 @@ const onSubmitFn = async (title, author, description, imageFile, authorImage=nul
                         {imageFile && getImagePreview(imageFile)}
                 {/* This should be tied to the user in future, right? like where they are based  */}
                 <p> Where was the grid made? </p>
-                    <CountrySelect setCountryCode={setCountryCode}/>
-                    <button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}
-                    style={iconStyles}>
+                    <Button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}
+                    style={iconStyles} >
                         Submit
-                    </button> 
+                    </Button> 
                      
                         <p style={{color: 'red', marginTop: "1%"}}>{isErr && err}</p>
                     </div>
+
 
                 </Modal.Body>      
   );

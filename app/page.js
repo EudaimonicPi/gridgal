@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react';
 import "./extra.css";
 import SignInButton from '@/components/buttons/signIn'
 import ProfilePic from '@/components/buttons/profilePic'
+import { LoadingPage } from '@/components/loading/login'
 
 
 const cardContainerStyle = {
@@ -23,6 +24,7 @@ const cardContainerStyle = {
 export default function Home() {
   const [show, setShow] = useState(false) // show for the create button modal 
   const [cards, setCards] = useState([]) //card arr to store cards 
+  const [isLoading, setLoading] = useState(true)
 
   const [countryCode, setCountryCode] = useState('US') // is US okay default, or ahhhhhh? 
   const { data, status } = useSession();
@@ -33,20 +35,24 @@ export default function Home() {
       // IIFE to create an asynchronous context
       ( async () => {
         try {
-          // Use await inside the asynchronous function
+          setLoading(true); // Show loading page while fetchingside the asynchronous function
+
+          // Use await in
           const fetchedCardsJSON = await fetchAll();
           const fetchedCards = JSON.parse(fetchedCardsJSON)
 
           setCards(fetchedCards); // omg it's so smart :) 
         } catch (error) {
           console.error('Error fetching cards:', error);
-        }
+        } finally {
+        setLoading(false); // Hide loading page when done
+      }
       })();
     }, []); // Dependency array to run the effect once on mount
 
 
 
-  if (status === 'loading') return <h1> loading... please wait</h1>;
+  if (status === "loading" || isLoading) return <LoadingPage />; 
 
   return (
     <main>

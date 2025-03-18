@@ -6,7 +6,7 @@ import { CurrentUserImage, UserImage } from '@/components/buttons/icons';
 
 //for styling purposes. essential? 
 import ModalHeader from './createComponents/modalHeader';
-import ThreeButtons, { DeleteButton, ModButton } from './modComponents/ThreeButtons';
+import ThreeButtons, { DeleteButton, ModButton } from '../buttons/ThreeButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { isAdmin } from '@/utils/modFns';
 import { useSession } from 'next-auth/react';

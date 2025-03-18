@@ -5,6 +5,7 @@ import { fetchAll } from '@/utils/dbFns/databaseFn'
 import ProfilePic from '@/components/buttons/profilePic'
 import { useSession } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns'
+import { LoadingPage } from '@/components/loading/login'
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
 const cardContainerStyle = {
   // backgroundColor: 'pink',
@@ -22,6 +23,7 @@ const cardContainerStyle = {
 export default function Route({props}) {
     const [cards, setCards] = useState([]) //card arr to store cards 
     const {data, status} = useSession()
+    const [isLoading, setIsLoading] = useState(true)
 
     const email = data? data.user.email: null
     const isApproved= isAdmin(email)
@@ -34,23 +36,27 @@ export default function Route({props}) {
       // IIFE to create an asynchronous context
       (async () => {
         try {
+          setIsLoading(true)
           // Use await inside the asynchronous function
           const fetchedCardsJSON = await fetchAll(true);
           const fetchedCards = JSON.parse(fetchedCardsJSON)
           setCards(fetchedCards);  
         } catch (error) {
           console.error('Error fetching cards:', error);
+        } finally {
+          setIsLoading(false)
         }
       })();
     }, []); // Dependency array to run the effect once on mount
 
-
+  if (status === "loading" || isLoading) return <LoadingPage />; 
    
     // return (
           return permissionToView? (
         <div>
           <ProfilePic />
           <p> Moderation: Approve, Defer, Decline. Note: as of now, one needs to refresh to see changes. This is being worked on. </p>
+          <p> Number of grids to approve: {cards.length} </p>
           <div style={cardContainerStyle}>
             {getCards(cards, true)}
           </div>
