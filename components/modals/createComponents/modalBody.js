@@ -109,7 +109,7 @@ const onSubmitFn = async (title, author, description, imageFile, authorImage=nul
                         {/*THIS IS THE PREVIEW */}
                         {imageFile && getImagePreview(imageFile)}
                 {/* This should be tied to the user in future, right? like where they are based  */}
-                <p> Where was the grid made? </p>
+                <p> Feel free to talk about the why, what, and how of your grid!  </p>
                     <Button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}
                     style={iconStyles} >
                         Submit
