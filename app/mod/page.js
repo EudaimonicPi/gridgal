@@ -24,6 +24,7 @@ export default function Route({props}) {
     const [cards, setCards] = useState([]) //card arr to store cards 
     const {data, status} = useSession()
     const [isLoading, setIsLoading] = useState(true)
+    const [refresh, setRefresh] = useState(false)
 
     const email = data? data.user.email: null
     const isApproved= isAdmin(email)
@@ -37,17 +38,23 @@ export default function Route({props}) {
       (async () => {
         try {
           setIsLoading(true)
+
           // Use await inside the asynchronous function
           const fetchedCardsJSON = await fetchAll(true);
           const fetchedCards = JSON.parse(fetchedCardsJSON)
           setCards(fetchedCards);  
+          if (refresh) setRefresh(false)
         } catch (error) {
           console.error('Error fetching cards:', error);
         } finally {
           setIsLoading(false)
         }
       })();
-    }, []); // Dependency array to run the effect once on mount
+    }, [refresh]); // Dependency array to run the effect once on mount
+
+    // when the mod updates (approve/decline, state should update)
+    // bad way to refresh, ideal is that modal is at this level but o well! 
+    // Fetch cards on mount and when `refresh` changes
 
   if (status === "loading" || isLoading) return <LoadingPage />; 
    
@@ -55,10 +62,11 @@ export default function Route({props}) {
           return permissionToView? (
         <div>
           <ProfilePic />
-          <p> Moderation: Approve, Defer, Decline. Note: as of now, one needs to refresh to see changes. This is being worked on. </p>
+          <p> Moderation: Approve, Defer, Decline. </p>
+          {refresh && <p>Refreshing...</p>}
           <p> Number of grids to approve: {cards.length} </p>
           <div style={cardContainerStyle}>
-            {getCards(cards, true)}
+            {getCards(cards, true, setRefresh)}
           </div>
         </div>
       ) : null // If not authenticated, return nothing

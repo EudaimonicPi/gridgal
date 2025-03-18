@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react';
 
 
 // for moderation and more!
-export default function ModalView({card, show, setShow, countryCode, mod}) {
+export default function ModalView({card, show, setShow, countryCode, mod, setRefresh}) {
     const {data, status } = useSession()
     const name = card.author // eventually, cards have names from the db
     const onClick = () => { console.log("modal clicked!")}
@@ -67,7 +67,7 @@ export default function ModalView({card, show, setShow, countryCode, mod}) {
                 <Modal.Body className="modal-container"> 
                     {getHugeImage(card.image)}
                     {card.description}
-                    {mod && <ThreeButtons card={card} setShow={setShow}/>}
+                    {mod && <ThreeButtons setRefresh={setRefresh} card={card} setShow={setShow}/>}
                 </Modal.Body>
                 {/*  TO DO: add props and abstract away */}
                 <MoreModalFooter/>

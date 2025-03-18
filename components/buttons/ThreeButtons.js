@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { acceptCard, declineCard } from '@/utils/modFns';
-import { faUser, faFlag, faCheck, faHourglass, faX, faTrashCan} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faFlag, faCheck, faHourglass, faX, faTrashCan, faRefresh} from '@fortawesome/free-solid-svg-icons'
 import './modButton.css' // TODO: eventually integrate with other import 
 
 function ModButton({ icon, color, onClick, label }) {
@@ -34,6 +34,20 @@ export default function ThreeButtons(props) { // no use effect separate place to
     const mongoID = card._id // perfect for db schemes :) 
     const title = card.title
     const setShow = props.setShow
+
+    const handleDelete = (title, mongoID,setShow) => {
+        console.log("we have refreshed!")
+        declineCard(title, mongoID, setShow)
+        props.setRefresh(true) // assumed mod!
+    }
+     
+    const handleAccept = (title, mongoID, setShow)=> {
+        console.log("we have refreshed!")
+        acceptCard(title, mongoID, setShow)
+        props.setRefresh(true) // assumed mod!
+
+    }
+
     return (
 
         <div className="button-container">
@@ -41,21 +55,23 @@ export default function ThreeButtons(props) { // no use effect separate place to
             <ModButton 
                 icon={faCheck} 
                 color={"green"} 
-                onClick={() => acceptCard(title, mongoID, setShow)}
+                onClick={() => handleAccept(title, mongoID, setShow)}
                 label="Accept"
             />
             {/* on on click, delete from mongo database */}
              <ModButton 
                 icon={faTrashCan} 
                 color={"red"} 
-                onClick={() => declineCard(title, mongoID, setShow)}
+                // onClick={() => declineCard(title, mongoID, setShow)}
+                onClick={() => handleDelete(title, mongoID, setShow)}
+
                 label="Decline"
             />
            
             <ModButton 
                 icon={faHourglass} 
                 color={"gold"} 
-                onClick={() => console.log("No action taken")}
+                onClick={() =>setShow(false)}
                 label="Defer"
             />
         </div>

@@ -75,6 +75,7 @@ export default function Home() {
           setCards={setCards}
           countryCode={countryCode}
           setCountryCode={setCountryCode}
+          confirmShow={confirmModalShow}
           setConfirmShow={setConfirmModalShow}
           />
          {/* <CountryFlag countryCode={countryCode}/> */}

@@ -38,8 +38,6 @@ export default function ModalBody({handleClose, cards, setCards, setConfirmShow}
     // TODO: error fixing, to put in useEffect oopsie!
     const author = data? data.user.email: null // osmethin went wrong or i did
     const authorImage = data? data.user.image: null
-    console.log("AUTHOR image IS ", authorImage)
-
 
     function resetInputs() {
         setTitle('');
