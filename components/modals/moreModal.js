@@ -64,7 +64,7 @@ export default function ModalView({card, show, setShow, countryCode, mod, setRef
                 <ModalHeader title={headerTitle} currentUser={false}
                     name={name} onClick={onClick} image={image}/>
                     
-                <Modal.Body className="modal-container"> 
+                <Modal.Body> 
                     {getHugeImage(card.image)}
                     {card.description}
                     {mod && <ThreeButtons setRefresh={setRefresh} card={card} setShow={setShow}/>}

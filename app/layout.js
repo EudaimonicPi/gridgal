@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
          <NextAuthSessionProvider >
           <div>
             <div style={{flex: '1'}}>
-             <Header title={"PostaGrid Gallery"} msg={'Post and View Fractal Grids from the Community!'}/>
+             <Header title={"PostaGrid Gallery"} msg={'Post and View 1-Page Fractal Grids from the Community!'}/>
           </div>
             {/* <button onClick={() => signIn()}>sign in with gooogle</button> */}
 
