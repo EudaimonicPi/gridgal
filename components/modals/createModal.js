@@ -11,25 +11,20 @@ const IMAGE_DEFAULT = Image.src
 
 
 // function /
-export default function CreateModal({show, handleClose, cards, setCards, countryCode, 
-    setCountryCode, setConfirmShow}) {
+export default function CreateModal({show, handleClose, cards, setCards, 
+   setConfirmShow}) {
 
     return (
             <Modal show={show} onHide={handleClose} >
-                <ModalHeader title={"Add grid to gallery"} currentUser={true} setCountryCode={setCountryCode}/>
+                <ModalHeader title={"Add grid to gallery"} currentUser={true}/>
                 <ModalBody 
-                // check to see which ones in use!
                     handleClose={handleClose}
                     cards={cards}
                     setCards={setCards}
-                    countryCode={countryCode}
-                    setCountryCode={setCountryCode}
                     setConfirmShow={setConfirmShow}
-                    
-                    
                 />
                 <Modal.Footer>
-                                        <text style={{color: 'gray'}}>
+                    <text style={{color: 'gray'}}>
                         NOTE: after submitting, the grid will go to the database for moderator approval.
                     </text>
                 </Modal.Footer>

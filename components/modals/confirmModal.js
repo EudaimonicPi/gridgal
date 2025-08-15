@@ -4,7 +4,7 @@ import ModalHeader from "./createComponents/modalHeader";
 export default function ConfirmModal({ show, handleClose }) {
   return (
     <Modal show={show} onHide={handleClose} centered>
-      <ModalHeader title={"🎉 Fractal Grid Submitted! 🎉"} />
+      <ModalHeader title={"Fractal Grid Submitted!"} />
       
       {/* Cute Modal Body */}
       <Modal.Body style={{
@@ -16,9 +16,10 @@ export default function ConfirmModal({ show, handleClose }) {
         }}>
         <p style={{ color: "#555", fontSize: "16px", lineHeight: "1.5" }}>
           🌟 Thanks for submitting! Your grid has been sent for moderator approval.  
-          Check back later to see if it's been added.  
+          Check back later to see if it's been added.It should take maximum one week.
+          
           <br /><br />
-          (Updates on this are not possible... yet! 😜)
+          (Updates on this are not possible... yet :)!)
         </p>
       </Modal.Body>
 
@@ -38,7 +39,7 @@ export default function ConfirmModal({ show, handleClose }) {
           onMouseOver={(e) => e.target.style.backgroundColor = "#45a049"}
           onMouseOut={(e) => e.target.style.backgroundColor = "#4CAF50"}
         >
-          🎨 Close
+         Close
         </Button>
       </Modal.Footer>
     </Modal>

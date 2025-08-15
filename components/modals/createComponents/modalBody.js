@@ -12,7 +12,7 @@ import {isInvalid } from '@/utils/validateInput';
 // import { faPlus} from '@fortawesome/free-solid-svg-icons'
 // import CountrySelect from '@/components/misc/countryDropdown'
 import { useSession } from 'next-auth/react';
-import Inputs from './body/createInputs';
+import Inputs from '../../elements/SubmitGridInputs';
 import { Button } from 'react-bootstrap';
 const IMAGE_DEFAULT = Image.src
 

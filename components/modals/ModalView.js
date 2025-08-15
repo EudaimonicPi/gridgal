@@ -23,7 +23,7 @@ export default function ModalView({card, show, setShow, mod, setRefresh}) {
     const image = card.authorImage? card.authorImage :'next.svg'
     const headerTitle = card.title + " Fractal Grid"
     const currentUser= false
-
+    const onModPage = mod
 
     // TODO: note asuming authenticated!!!
     const admin = data? isAdmin(data.user.email): false
@@ -31,7 +31,7 @@ export default function ModalView({card, show, setShow, mod, setRefresh}) {
 
     // if we are on the main page (not mod) and admin, can delete any grid 
     function ExtraDelete() {
-        if (mod) return 
+        if (onModPage) return 
         // if not admin || snot data.user.email === card.author 
         if (!admin) return // this should be not possible though? 
 
@@ -71,11 +71,10 @@ export default function ModalView({card, show, setShow, mod, setRefresh}) {
             <Modal show={show} onHide={() => setShow(false)}>
                 <ModalHeader title={headerTitle} currentUser={false}
                     name={name} onClick={onClick} image={image}/>
-                    
                 <Modal.Body> 
                     {getHugeImage(card.image)}
                     {card.description}
-                    {mod && <ThreeButtons setRefresh={setRefresh} card={card} setShow={setShow}/>}
+                    {onModPage && <ThreeButtons setRefresh={setRefresh} card={card} setShow={setShow}/>}
                 </Modal.Body>
                 {/*  TO DO: add props and abstract away */}
                 <MoreModalFooter/>

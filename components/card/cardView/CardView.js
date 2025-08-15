@@ -14,8 +14,6 @@ export default function SingleCard (props) {
      // author is there! 
      const image = card.authorImage? card.authorImage: "next.svg" // TO BE card.image
      const name = card.name? card.name:"TEST" // too be card.name
-//     console.log("CARD IMAGE IS ", card.image)
-     // console.log("WHAT IS ", card.author)
 
     return (
      <div className="cardContainer" style={{backgroundColor: '#ddd'}} onClick={() => setShow(true)}>
