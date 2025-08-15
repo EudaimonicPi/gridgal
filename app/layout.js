@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
             <div style={{flex: '1'}}>
              <Header title={"PostaGrid Gallery"} msg={'Post and View 1-Page Fractal Grids from the Community!'}/>
           </div>
-            {/* <button onClick={() => signIn()}>sign in with gooogle</button> */}
 
           <div style={{flex: '9', padding: '2%'}}>
             {children}
