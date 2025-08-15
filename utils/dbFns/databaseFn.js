@@ -2,25 +2,28 @@ import { noWIFIfetchedCards } from "../offline/data"
 
 
 // fetches all the cards (if mod, fetches pending cards only)
-const fetchAll = async (mod=false) => {
-  const toSend = { mod: mod }
-  const jsonToSend = JSON.stringify(toSend)
-    try { //weird stuff again
-        const response = await fetch(`/api/cards`, { 
-            cache: 'no-store',  
-            method: 'POST' ,  //it was storing the GET request so I had to make it a post
-            body: jsonToSend, 
-          })
+const fetchAll = async (mod = false, limit = null) => {
+  const toSend = { mod, limit }; // now sending limit too
+  const jsonToSend = JSON.stringify(toSend);
 
-        if (response.ok) {
-            const toReceive = await response.json()
-            const test = JSON.stringify(toReceive) // stringified?
-            return test // should I return JSON? 
-        }
-    } catch (err) {
-        console.log("error with fetching all cards", err)
+  try {
+    const response = await fetch(`/api/cards`, { 
+      cache: 'no-store',
+      method: 'POST',
+      body: jsonToSend,
+    });
+
+    if (response.ok) {
+      const toReceive = await response.json();
+      return JSON.stringify(toReceive);
     }
-}
+  } catch (err) {
+    console.log("error with fetching all cards", err);
+  }
+};
+
+
+
 
 // creates a card
 const createOne = async (title, card, mod=false) => {
