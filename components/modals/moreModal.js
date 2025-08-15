@@ -10,6 +10,8 @@ import ThreeButtons, { DeleteButton, ModButton } from '../buttons/ThreeButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { isAdmin } from '@/utils/modFns';
 import { useSession } from 'next-auth/react';
+import ButtonTemplate from '../buttons/ButtonTemplate';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -42,6 +44,12 @@ export default function ModalView({card, show, setShow, countryCode, mod, setRef
     return (
         <Modal.Footer>
          <div>
+             <ButtonTemplate 
+             onClick={() => console.log("sga")} 
+             icon={faStar} 
+             label="favorite"
+             color="gold"
+             />
             {/* can delete means either is admin or card author matches current user */}
             <ExtraDelete/>
         </div>
