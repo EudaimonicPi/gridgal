@@ -5,7 +5,7 @@ import { fetchAll } from '@/utils/dbFns/databaseFn'
 import ProfilePic from '@/components/buttons/profilePic'
 import { useSession } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns'
-import { LoadingPage } from '@/components/loading/login'
+import { LoadingPage } from '@/components/elements/login'
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
 const cardContainerStyle = {
   // backgroundColor: 'pink',

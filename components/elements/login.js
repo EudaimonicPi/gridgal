@@ -1,7 +1,6 @@
-/* This file currently containes the sign in, sign out, and loading page viewss
-*/
+
 import Image from 'next/image'
-import './login.css'
+import '@/styles/login.css'
 
 
 function LoadingPage() {

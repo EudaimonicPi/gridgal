@@ -7,7 +7,7 @@ import CreateModal from '@/components/modals/createModal';
 import ConfirmModal from '@/components/modals/confirmModal';
 import SignInButton from '@/components/buttons/signIn';
 import ProfilePic from '@/components/buttons/profilePic';
-import { LoadingPage } from '@/components/loading/login';
+import { LoadingPage } from '@/components/elements/login';
 import { getCards } from '@/utils/cards';
 import './extra.css';
 import PaginationControls from '@/components/elements/PaginationControls';
