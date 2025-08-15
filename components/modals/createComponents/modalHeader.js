@@ -1,8 +1,6 @@
 /* Contains the modal head */
-import { faUser, faFlag} from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-bootstrap/Modal';
 import './ModalStyles.css'; // Import your CSS file for styling
-import CountrySelect from '@/components/misc/countryDropdown'
 
 export default function ModalHeader({currentUser, title, name, image, onClick}) {
   // Add grid to gallery 

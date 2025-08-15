@@ -2,7 +2,6 @@
 // The create modal that pops up once you create a grid
 import Modal from 'react-bootstrap/Modal'; //just keeping it consistent :)
 import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
-import Image from '@/public/vercel.svg'
 import ModalHeader from './createComponents/modalHeader';
 import ModalBody from './createComponents/modalBody'
 

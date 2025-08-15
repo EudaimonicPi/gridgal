@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faFlag} from '@fortawesome/free-solid-svg-icons'
 import { useSession, signIn, signOut } from 'next-auth/react';
 
-
-
 //for styling purposes. essential? 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

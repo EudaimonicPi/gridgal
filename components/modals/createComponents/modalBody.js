@@ -2,19 +2,16 @@
 import {useState} from 'react'
 // The create modal that pops up once you create a grid
 import Modal from 'react-bootstrap/Modal'; //just keeping it consistent :)
-import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
 
-import Image from '@/public/vercel.svg'
 import { genCard } from '@/utils/cards'
 import { getImagePreview } from '@/utils/imageFn'
 import { createOne } from '@/utils/dbFns/databaseFn'
 import {isInvalid } from '@/utils/validateInput';
-// import { faPlus} from '@fortawesome/free-solid-svg-icons'
-// import CountrySelect from '@/components/misc/countryDropdown'
 import { useSession } from 'next-auth/react';
 import Inputs from '../../elements/SubmitGridInputs';
 import { Button } from 'react-bootstrap';
-const IMAGE_DEFAULT = Image.src
+
+import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
 
 const iconStyles = {
     color: "white",
