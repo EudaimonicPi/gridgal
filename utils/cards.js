@@ -1,4 +1,4 @@
-import Card from '@/components/card/cardComponent'
+import Card from '@/components/card/WholeCardComponent'
 
 const genCard = (title, author, description, image, authorImage, status='pending',) => { 
         return {title, author, description, image, status, authorImage}

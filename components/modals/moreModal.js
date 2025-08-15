@@ -16,7 +16,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 // for moderation and more!
-export default function ModalView({card, show, setShow, countryCode, mod, setRefresh}) {
+export default function ModalView({card, show, setShow, mod, setRefresh}) {
     const {data, status } = useSession()
     const name = card.author // eventually, cards have names from the db
     const onClick = () => { console.log("modal clicked!")}

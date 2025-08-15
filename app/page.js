@@ -10,7 +10,7 @@ import ProfilePic from '@/components/buttons/profilePic';
 import { LoadingPage } from '@/components/loading/login';
 import { getCards } from '@/utils/cards';
 import './extra.css';
-import PaginationControls from '@/components/elements/paginationControls';
+import PaginationControls from '@/components/elements/PaginationControls';
 
 const cardContainerStyle = {
   display: 'grid',
