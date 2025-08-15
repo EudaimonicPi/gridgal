@@ -10,6 +10,8 @@ import ThreeButtons, { DeleteButton, ModButton } from '../buttons/ThreeButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { isAdmin } from '@/utils/modFns';
 import { useSession } from 'next-auth/react';
+import ButtonTemplate, { ModButtonTemplate } from '../buttons/ButtonTemplate';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -39,12 +41,18 @@ export default function ModalView({card, show, setShow, countryCode, mod, setRef
 
 
     function MoreModalFooter() {
+        // on click favorites in db going to Ecy land
     return (
         <Modal.Footer>
-         <div>
+             <ModButtonTemplate 
+             onClick={() => console.log("sga")} 
+             icon={faStar} 
+             label="favorite"
+             color="gold"
+             mod={admin}
+             />
             {/* can delete means either is admin or card author matches current user */}
             <ExtraDelete/>
-        </div>
 
 {/* could potentiall put {card.name} but rn that's email */}
         <div> made by  </div>
