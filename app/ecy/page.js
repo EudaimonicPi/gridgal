@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import CreateButton from '@/components/buttons/createButton'
 import CreateModal from '@/components/modals/createModal'
 import { fetchAll } from '@/utils/dbFns/databaseFn'
-import CountryFlag from '@/components/misc/countryFlag';
 import { getCards } from '@/utils/cards'
 import { useSession } from 'next-auth/react';
 // import "./extra.css";
