@@ -20,17 +20,17 @@ export default function Home() {
   return (
     <main>
       {/* Use HomepageHeader component */}
-      {/* <HomepageHeader
+      <HomepageHeader
         show={show}
         setShow={setShow}
         confirmModalShow={confirmModalShow}
         setConfirmModalShow={setConfirmModalShow}
         isAuthenticated={status === 'authenticated'}
-      /> */}
+      />
 
-      <div className="cards-container">
+      {/* <div className="cards-container">
         {getCards(cards)}
-      </div>
+      </div> */}
 
       {/* Pagination Controls */}
       <PaginationControls page={page} totalPages={totalPages} setPage={setPage} />
