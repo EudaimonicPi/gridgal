@@ -1,13 +1,6 @@
 import { noWIFIfetchedCards } from "../offline/data"
 
 
-// fetches all the cards (if mod, fetches pending cards only)
-// const fetchAll = async (mod = false, limit = null, onlyFavorites=false) => {
-//   const toSend = { mod, limit }; // now sending limit too
-//   const jsonToSend = JSON.stringify(toSend);
-
-
-
 // Fetches all the cards (if mod, fetches pending cards only)
 const fetchAll = async (mod = false, limit = null, onlyFavorites = false) => {
   const toSend = { mod, limit, onlyFavorites }; // Include onlyFavorites in the request
