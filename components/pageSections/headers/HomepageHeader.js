@@ -1,6 +1,6 @@
 'use client';
 import CreateButton from '@/components/buttons/createButton';
-// import CreateModal from '@/components/modals/CreateCardModal';
+import CreateModal from '@/components/modals/CreateCardModal';
 import ConfirmModal from '@/components/modals/SubmittedGridModal';
 import SignInButton from '@/components/buttons/signIn';
 import ProfilePic from '@/components/buttons/profilePic';
