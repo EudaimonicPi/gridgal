@@ -1,6 +1,5 @@
 'use client'
-import { useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import {imageContainerStyles, userImageStyles} from './loginStyles'
 import { Dropdown } from 'react-bootstrap';
@@ -11,7 +10,6 @@ export default function ProfilePic() {
     const {data, status} = useSession()
     const router = useRouter()
 
-    if (status !== 'authenticated') return // other pages take care of their loading symbol
     if (status === 'authenticated') {
         const admin = isAdmin(data.user.email) 
         return ( // this is the lil profile component
@@ -23,6 +21,7 @@ export default function ProfilePic() {
                     <Dropdown.Menu>
                         <Dropdown.Item disabled> {data.user.name} </Dropdown.Item>
                         <Dropdown.Item onClick={signOut}>Sign Out</Dropdown.Item>
+                         <Dropdown.Item onClick={() => router.push('/ecyFavGrids')}>Ecy's Favorites</Dropdown.Item>
                         {admin && <Dropdown.Item onClick={() => router.push('/mod')}>Mod</Dropdown.Item>}
                         {admin && <Dropdown.Item onClick={() => router.push('/')}>Home</Dropdown.Item>}
                         {admin && <Dropdown.Item onClick={() => router.push('/profile')}>Profile Page [DRAFT]</Dropdown.Item>}

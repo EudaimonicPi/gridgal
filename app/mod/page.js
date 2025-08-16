@@ -1,7 +1,6 @@
 'use client'
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation';
-import ProfilePic from '@/components/buttons/profilePic'
 import { useSession } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns'
 import { LoadingPage } from '@/components/elements/LoadingPage'
@@ -34,9 +33,8 @@ export default function Route({props}) {
     if (status === "loading" || isLoading) return <LoadingPage />; 
         return (
           <div>
-            <ProfilePic />
+            {/* <ProfilePic /> */}
             <p> Moderation: Approve, Defer, Decline. </p>
-            {refresh && <p>Refreshing...</p>}
             <p> Number of grids to approve: {cards.length} </p>
             <CardsContainer 
                 mod={true}
