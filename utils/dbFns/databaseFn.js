@@ -2,8 +2,15 @@ import { noWIFIfetchedCards } from "../offline/data"
 
 
 // fetches all the cards (if mod, fetches pending cards only)
-const fetchAll = async (mod = false, limit = null) => {
-  const toSend = { mod, limit }; // now sending limit too
+// const fetchAll = async (mod = false, limit = null, onlyFavorites=false) => {
+//   const toSend = { mod, limit }; // now sending limit too
+//   const jsonToSend = JSON.stringify(toSend);
+
+
+
+// Fetches all the cards (if mod, fetches pending cards only)
+const fetchAll = async (mod = false, limit = null, onlyFavorites = false) => {
+  const toSend = { mod, limit, onlyFavorites }; // Include onlyFavorites in the request
   const jsonToSend = JSON.stringify(toSend);
 
   try {
@@ -18,7 +25,7 @@ const fetchAll = async (mod = false, limit = null) => {
       return JSON.stringify(toReceive);
     }
   } catch (err) {
-    console.log("error with fetching all cards", err);
+    console.log("Error with fetching all cards", err);
   }
 };
 
@@ -46,8 +53,8 @@ const createOne = async (title, card, mod=false) => {
   }
 }
 
-const updateStatus = async (title, cardID) => {
-  const toSend = JSON.stringify({cardID: cardID})
+const updateStatus = async (title, cardID, ecyFav=false) => {
+  const toSend = JSON.stringify({cardID: cardID, ecyFav: ecyFav})
   try {
     const response = await fetch(`/api/card/${title}`, 
     {

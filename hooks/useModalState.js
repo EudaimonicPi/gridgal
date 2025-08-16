@@ -2,17 +2,14 @@
 'use client';
 import { useState } from 'react';
 
-export function useModalState(defaultCountry = 'US') {
+export function useModalState() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [countryCode, setCountryCode] = useState(defaultCountry);
 
   return {
     showCreateModal,
     setShowCreateModal,
     showConfirmModal,
     setShowConfirmModal,
-    countryCode,
-    setCountryCode,
   };
 }

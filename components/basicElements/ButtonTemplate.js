@@ -15,9 +15,8 @@ export default function ButtonTemplate({className, onClick, icon, label, color="
 }
 
 // i'm not sure if this is used...? 
-export function ModButtonTemplate({mod,className, onClick, icon, label, color="white"}) {
+export function ModButtonTemplate({onClick, icon, label, color="white"}) {
     // two classes? $`className`
-    if (!mod) return
     return (
         <div 
             className={'mod-button' } 

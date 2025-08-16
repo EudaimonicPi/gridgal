@@ -4,11 +4,14 @@ const genCard = (title, author, description, image, authorImage, status='pending
         return {title, author, description, image, status, authorImage}
 }
 
-function getCards(cards, mod=false, setRefresh=null) {
-        // gets all the card element
-        // each id is the mongo id generated
-        return cards.map((card) => <Card  card={card} mod={mod} setRefresh={setRefresh}/>)
-}
+const getCards = (cards, mod=false, setRefresh = () => {}, onlyFavorites = false) => {
+  if (!cards) return "No Cards Available"
+  // If onlyFavorites is true, filter the cards to only include those where ecyFav is true
+  const filteredCards = onlyFavorites ? cards.filter(card => card.ecyFav === true) : cards;
+
+  return filteredCards.map( (card) => 
+    <Card  card={card} mod={mod} setRefresh={setRefresh}/>)
+};
 
 
 export { genCard, getCards}
