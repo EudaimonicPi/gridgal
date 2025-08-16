@@ -2,7 +2,6 @@
 import Image from 'next/image'
 import '@/styles/login.css'
 
-
 function LoadingPage() {
    return (
       <div className="loading-container">

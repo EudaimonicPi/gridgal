@@ -16,7 +16,6 @@ import {ImageInput, TextInput, BigTextInput} from '@/components/elements/MultiMo
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder={"Name Your Grid"}
                         />  
-
                         <BigTextInput
                             label="Grid Description"
                             type="text"

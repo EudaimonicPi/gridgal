@@ -1,0 +1,10 @@
+.bigInputStyle {
+  height: 100px;
+  width: 100%;
+  margin-bottom: 5%;
+  resize: none; /* Prevents resizing */
+  text-align: start; /* Ensures text starts from the left */
+  vertical-align: top; /* Keeps cursor at the top */
+  padding: 8px; /* Adds spacing inside the box */
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
