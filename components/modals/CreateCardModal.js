@@ -7,8 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
 
 
 
-const IMAGE_DEFAULT = Image.src
-
 // function /
 export default function CreateModal({
     show, 

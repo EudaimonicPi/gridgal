@@ -20,14 +20,14 @@ export default function HomepageHeader({ show, setShow, confirmModalShow, setCon
         show={confirmModalShow}
         handleClose={() => setConfirmModalShow(false)}
       />
-      {/* <CreateModal
+      <CreateModal
         show={show}
         handleClose={() => setShow(false)}
         cards={[]}
         setCards={() => {}}
         confirmShow={confirmModalShow}
         setConfirmShow={setConfirmModalShow}
-      /> */}
+      />
     </div>
   );
 }
