@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { ModButtonTemplate } from '@/components/buttons/ButtonTemplate';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { DeleteButton } from '@/components/buttons/ThreeButtons';
+import { DeleteButton } from '@/components/elements/ThreeModButtons';
 
 import { CurrentUserImage, UserImage } from '@/components/buttons/icons';
 
