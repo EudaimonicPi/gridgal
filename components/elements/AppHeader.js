@@ -1,7 +1,5 @@
-// import FGImage from '@/utils/fgman.png'
 'use client'
 import '@/styles/headerStyle.css'
-
 
 export default function Header(props) {
     const title = props.title

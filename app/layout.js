@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import Header from '@/components/elements/AppHeader'
+import AppHeader from '@/components/elements/AppHeader'
 import NextAuthSessionProvider from "@/providers/SessionProvider";
 import "@/styles/globals.css";
 import { UserProvider } from "@/providers/UserProvider";
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
            <UserProvider>
           <div>
               <div style={{flex: '1'}}>
-              <Header title={"PostaGrid Gallery"} msg={'Post and View 1-Page Fractal Grids from the Community!'}/>
+              <AppHeader title={"PostaGrid Gallery"} msg={'Post and View 1-Page Fractal Grids from the Community!'}/>
               </div>
             <div style={{flex: '9', padding: '2%'}}>
               {children}
