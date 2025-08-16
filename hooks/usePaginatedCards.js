@@ -18,6 +18,7 @@ export function usePaginatedCards(itemsPerPage = 1, mod = false, onlyFavorites=f
 
         // const firstBatchJSON = await fetchAll(mod, itemsPerPage);
         const firstBatch = await fetchAll(mod, itemsPerPage, onlyFavorites);
+        console.log("first batch has been fetched !")
         // const firstBatch = JSON.parse(firstBatchJSON);
 
         if (!cancelled) {
