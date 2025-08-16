@@ -29,7 +29,6 @@ export default function Page() {
                 page={page}
                 totalPages={totalPages}
                 setPage={setPage}/>
-
     </main>
   );
 }

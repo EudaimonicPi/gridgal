@@ -23,7 +23,7 @@
 
 // /api/cards/route.js
 import { connectDB } from "@/utils/mongodb/connect";
-import { Card } from "@/utils/mongodb/models/card";
+import { NewCard } from "@/utils/mongodb/models/card";
 
 // export async function POST(request) {
 //   const { mod, limit } = await request.json(); // accept limit
@@ -56,7 +56,7 @@ export async function POST(request) {
     const status = mod ? 'pending' : 'accepted';
     
     // Start with the base query
-    let query = Card.find({ status });
+    let query = NewCard.find({ status });
 
     // If onlyFavorites is true, filter for ecyFav = true
     // if (onlyFavorites) {

@@ -26,4 +26,6 @@ const UserSchema = new Schema({
 })
 const Card = models.Card || model('Card', CardSchema); 
 const User = models.User || model('User', UserSchema)
-export {Card, User } ;
+const NewCard = models.NewCard || model('NewCard', CardSchema)
+
+export {Card, User, NewCard } ;

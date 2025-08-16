@@ -1,6 +1,6 @@
 
 import { connectDB } from "@/utils/mongodb/connect";
-import { Card } from "@/utils/mongodb/models/card";
+import { NewCard } from "@/utils/mongodb/models/card";
 import { genCard } from '@/utils/cards'
 
 
@@ -19,11 +19,11 @@ export const POST = async (request, { params }) => {
   // i think image needs to have the blob localhost thing
   const card = genCard(title, author, description, image)
   // console.log("CARD IS ", card)
-  const cardObj = new Card(card)
+  const cardObj = new NewCard(card)
 
   try {
     await connectDB(mod);
-    const newCard = await Card.create(cardObj);
+    const newCard = await NewCard.create(cardObj);
     // console.log("NEW CARD IS ", newCard)
     
     return new Response({ status: 200 });
@@ -42,7 +42,7 @@ export const DELETE = async (request, { params }) => {
     await connectDB();
     // console.log("HAS BEEN DELETED>>>", id)
     // findById and remove seems useful!
-    await Card.deleteOne({ _id: cardID });
+    await NewCard.deleteOne({ _id: cardID });
     //responses
     return new Response({ status: 200 });
   } catch (err) {
@@ -64,7 +64,7 @@ export const PUT = async (request, { params }) => {
   try {
     await connectDB();
     // this is update 1
-    const updatedCard = await Card.findOneAndUpdate(
+    const updatedCard = await NewCard.findOneAndUpdate(
         {_id: cardID}, //first arg is find
         {status: 'accepted',
       ecyFav: ecyFav},
