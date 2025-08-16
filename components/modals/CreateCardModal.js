@@ -1,17 +1,21 @@
 
 // The create modal that pops up once you create a grid
 import Modal from 'react-bootstrap/Modal'; //just keeping it consistent :)
-import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
 import ModalHeader from './createComponents/modalHeader';
 import ModalBody from './createComponents/modalBody'
+import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
+
 
 
 const IMAGE_DEFAULT = Image.src
 
-
 // function /
-export default function CreateModal({show, handleClose, cards, setCards, 
-   setConfirmShow}) {
+export default function CreateModal({
+    show, 
+    handleClose, 
+    cards, 
+    setCards, 
+    setConfirmShow}) {
 
     return (
             <Modal show={show} onHide={handleClose} >
@@ -25,6 +29,7 @@ export default function CreateModal({show, handleClose, cards, setCards,
                 <Modal.Footer>
                     <text style={{color: 'gray'}}>
                         NOTE: after submitting, the grid will go to the database for moderator approval.
+            
                     </text>
                 </Modal.Footer>
             </Modal>

@@ -15,15 +15,19 @@ function ExtraDelete({ card, setShow, admin, onModPage }) {
 export default function ModalFooter({ card, setShow, admin, onModPage, currentUser, name, image, onClick }) {
   return (
     <Modal.Footer>
-      <ModButtonTemplate onClick={() => console.log('favorite clicked')} icon={faStar} label="Favorite" color="gold" mod={admin} />
-      <ExtraDelete card={card} setShow={setShow} admin={admin} onModPage={onModPage} />
-      <div>Made by:</div>
-      <div>
-        {currentUser ? <CurrentUserImage /> : <UserImage name={name} image={image} onClick={onClick} />}
-      </div>
-      <Button variant="primary" onClick={() => setShow(false)}>
-        Close
-      </Button>
+      <span>
+        
+        <ModButtonTemplate onClick={() => console.log('favorite clicked')} icon={faStar} label="Favorite" color="gold" mod={admin} />
+        <ExtraDelete card={card} setShow={setShow} admin={admin} onModPage={onModPage} />
+        <div>Made by:</div>
+        <div>
+          {currentUser ? <CurrentUserImage /> : <UserImage name={name} image={image} onClick={onClick} />}
+        </div>
+        <Button variant="primary" onClick={() => setShow(false)}>
+          Close
+        </Button>
+      </span>
+
     </Modal.Footer>
   );
 }

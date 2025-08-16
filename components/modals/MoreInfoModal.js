@@ -14,8 +14,10 @@ export default function MoreInfoModal({ card, show, setShow, mod, setRefresh }) 
   const image = card.authorImage || 'next.svg';
   const headerTitle = `${card.title} Fractal Grid`;
   const currentUser = false;
+
   const onModPage = mod;
   const admin = data ? isAdmin(data.user.email) : false;
+  // NOTE: NAME HERE IS EMAIL WE MUST MUST MUST CHANGE THAT
 
   const onClick = () => {
     console.log('modal clicked!');
