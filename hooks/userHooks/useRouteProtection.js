@@ -26,6 +26,7 @@ export function useRouteProtection({ status, loading, userData }) {
   useEffect(() => {
     // Redirect to login page if not authenticated
     // will need to update for ecy public grids or just exclude mod
+    
     if (status === 'unauthenticated' && pathname !== '/') {
       router.push('/');
     }

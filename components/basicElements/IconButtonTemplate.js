@@ -3,8 +3,7 @@ import './buttonStyles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-
-export default function DeleteButton (props) {
+export default function IconButtonTemplate (props) {
     //props: handleClick, delMode
     return (
         <div>

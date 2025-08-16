@@ -3,19 +3,15 @@
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-// import {
-//   fetchUserDocument,
-//   createUserDocument,
-//   checkAndAddUser
-// } from '@/utils/databaseFns/fbFn';
 
 export function useUserData() {
   const { data: session, status } = useSession();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData ] = useState(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-
+  console.log("DATA IS ", session?.user)
+  // we have userData.email, image, and name
   useEffect(() => {
     if (status === 'loading') {
       setLoading(true);
@@ -25,8 +21,9 @@ export function useUserData() {
     const loadUserData = async () => {
       setLoading(true);
 
-      if (status === 'authenticated' && session?.user?.email) {
-      
+      if (status === 'authenticated' && session?.user) {
+          setUserData(session.user)
+
       } else {
         // not authenticated
      
@@ -36,5 +33,5 @@ export function useUserData() {
     loadUserData();
   }, [session, status]);
 
-  return { userData, loading, isAuthenticated, session, status };
+  return { userData, loading, isAuthenticated, status };
 }
