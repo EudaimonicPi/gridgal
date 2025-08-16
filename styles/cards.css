@@ -1,7 +1,75 @@
-.card-container {
+.cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
   justify-content: center;
+}
+
+.card-container {
+  /* background: #fff; */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.card-container:hover {
+  transform: scale(1.05);
+}
+/* where is this being put? */
+.cardPhoto {
+  width: 100%;
+  border-radius: 10px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cardContent {
+  /* background-color: #dddddd; */
+  padding: 5%;
+
+  min-height: 20vh;
+  max-height: 20vh;
+
+  overflow: hidden;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardHeading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  flex: 1;
+  margin: 10px 0;
+}
+
+.cardDescription {
+  font-size: 0.8rem;
+  flex: 2;
+  color: #555;
+}
+
+.cardButton {
+  flex: 0.5;
+  background-color: #8c1515;
+  color: #fff;
+  border: none;
+  padding: 7%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cardFooter {
+  flex: 1;
+}
+.cardButton:hover {
+  background-color: #4c0808;
 }

@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns'
 import { LoadingPage } from '@/components/elements/LoadingPage'
 import { usePaginatedCards } from '@/hooks/usePaginatedCards'
-import PaginationControls from '@/components/elements/PaginationControls'
+import PaginationControls from '@/components/elements/PaginationPageControl'
 import '@/styles/cards.css';
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
 
@@ -42,7 +42,7 @@ export default function Route({props}) {
             {refresh && <p>Refreshing...</p>}
             <p> Number of grids to approve: {cards.length} </p>
 
-            <div className="card-container">
+            <div className="cards-container">
               {getCards(cards, true, setRefresh)}
             </div>
             <PaginationControls page={page} totalPages={totalPages} setPage={setPage} />

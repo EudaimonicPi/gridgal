@@ -6,7 +6,7 @@ import { usePaginatedCards } from '@/hooks/usePaginatedCards';
 import HomepageHeader from '@/components/pageSections/headers/HomepageHeader'; // Import the new component
 import { LoadingPage } from '@/components/elements/LoadingPage';
 import { getCards } from '@/utils/cards';
-import PaginationControls from '@/components/elements/PaginationControls';
+import PaginationControls from '@/components/elements/PaginationPageControl';
 import '@/styles/cards.css';
 
 
@@ -29,7 +29,7 @@ export default function Home() {
         isAuthenticated={status === 'authenticated'}
       />
 
-      <div className="card-container">
+      <div className="cards-container">
         {getCards(cards)}
       </div>
 

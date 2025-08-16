@@ -1,5 +1,5 @@
 import { UserImage } from '../../buttons/icons';
-import './cardStyles.css';
+import '@/styles/cards.css';
 
 // TO DO: standardize size of image!
 const MAX_CHARS = 60

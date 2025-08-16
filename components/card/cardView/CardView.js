@@ -2,7 +2,7 @@
 'use client'
 import {useState} from 'react'
 import { CardHeading, CardImage, CardDescription,CardFooter } from './cardViewComponents';
-import './cardStyles.css';
+import '@/styles/cards.css'
 
 
 // NOTE: this is card view
@@ -16,7 +16,7 @@ export default function SingleCard (props) {
      const name = card.name? card.name:"TEST" // too be card.name
 
     return (
-     <div className="cardContainer" style={{backgroundColor: '#ddd'}} onClick={() => setShow(true)}>
+     <div className="card-container" style={{backgroundColor: '#ddd'}} onClick={() => setShow(true)}>
           <CardImage image={card.image}/>
           <div className="cardContent">
                <CardHeading title={card.title}/>

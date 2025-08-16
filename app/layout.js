@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import Header from '@/components/elements/Header'
+import Header from '@/components/elements/AppHeader'
 import NextAuthSessionProvider from "@/providers/SessionProvider";
 import "@/styles/globals.css";
 import { UserProvider } from "@/providers/UserProvider";
