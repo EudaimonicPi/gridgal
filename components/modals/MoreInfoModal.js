@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import ModalHeader from '@/components/modals/moreInfoComponents/ModalHeader';
 import ModalFooter from '@/components/modals/moreInfoComponents/ModalFooter';
 import { getHugeImage } from '@/utils/imageFn';
-import ThreeButtons from '../buttons/ThreeButtons';
+import ThreeButtons from '../elements/ThreeModButtons';
 import { useSession } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns';
 
