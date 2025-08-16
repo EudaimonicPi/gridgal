@@ -2,7 +2,9 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { ModButtonTemplate } from '@/components/buttons/ButtonTemplate';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import DeleteButton from '@/components/buttons/DeleteButton';
+// import DeleteButton from '@/components/buttons/DeleteButton';
+import ThreeButtons, { DeleteButton, ModButton } from '@/components/buttons/ThreeButtons';
+
 import { CurrentUserImage, UserImage } from '@/components/buttons/icons';
 
 function ExtraDelete({ card, setShow, admin, onModPage }) {
