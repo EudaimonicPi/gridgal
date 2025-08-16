@@ -1,4 +1,4 @@
-import {ImageInput, TextInput, BigTextInput} from '@/components/elements/inputs'
+import {ImageInput, TextInput, BigTextInput} from '@/components/elements/MultiModalInputs'
 
   export default function Inputs({title, description, handleImageChange, setTitle, setDescription}) {
       return (
