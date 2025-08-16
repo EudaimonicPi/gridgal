@@ -5,6 +5,11 @@ import ModalHeader from './createComponents/modalHeader';
 import ModalBody from './createComponents/modalBody'
 import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e71981f37968be7de860b5655f40439bbfc3b44d
 // function /
 export default function CreateModal({
     show, 
