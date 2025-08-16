@@ -10,7 +10,7 @@ const getCards = (cards, mod=false, setRefresh = () => {}, onlyFavorites = false
   const filteredCards = onlyFavorites ? cards.filter(card => card.ecyFav === true) : cards;
 
   return filteredCards.map( (card) => 
-    <Card  card={card} mod={mod} setRefresh={setRefresh}/>)
+    <Card  key={card._id} card={card} mod={mod} setRefresh={setRefresh}/>)
 };
 
 
