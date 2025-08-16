@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { acceptCard, declineCard } from '@/utils/modFns';
-import { faUser, faFlag, faCheck, faHourglass, faX, faTrashCan, faRefresh} from '@fortawesome/free-solid-svg-icons'
-import './modButton.css' // TODO: eventually integrate with other import 
+import { faCheck, faHourglass, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import '@/styles/buttons.css'
 
 function ModButton({ icon, color, onClick, label }) {
     return (
@@ -49,7 +49,6 @@ export default function ThreeButtons(props) { // no use effect separate place to
     }
 
     return (
-
         <div className="button-container">
             {/* on click, add to regular data base */}
             <ModButton 
@@ -62,12 +61,9 @@ export default function ThreeButtons(props) { // no use effect separate place to
              <ModButton 
                 icon={faTrashCan} 
                 color={"red"} 
-                // onClick={() => declineCard(title, mongoID, setShow)}
                 onClick={() => handleDelete(title, mongoID, setShow)}
-
                 label="Decline"
             />
-           
             <ModButton 
                 icon={faHourglass} 
                 color={"gold"} 

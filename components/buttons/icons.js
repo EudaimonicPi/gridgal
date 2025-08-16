@@ -1,24 +1,23 @@
 import { userImageStyles} from './loginStyles'
-import { useSession } from 'next-auth/react';
-
-
+import { useUserData } from '@/hooks/userHooks/useUserData';
 
 
 // NOTE: assumes login, TODO: add error checking
-function CurrentUserImage({onClick}) {
-    const {data, status} = useSession()
+function CurrentUserImage({onClick, image, name}) {
+    const { userData } = useUserData()
     return (
         <UserImage 
-            image={data.user.image} 
-            name={data.user.name} 
+            image={userData.image} 
+            name={userData.name} 
             onClick={onClick}/>
     )
 }
+
 function UserImage({image, name, onClick}) {
     return (
          <img style={userImageStyles} 
             src={image} 
-            alt={name + ' photo'}
+            // alt={name + ' photo'}
             onClick={onClick} />
     )
 }

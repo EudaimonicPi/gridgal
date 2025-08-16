@@ -1,5 +1,6 @@
 import { updateStatus, deleteOne } from '@/utils/dbFns/databaseFn';
 
+// TODO: make env vars
 const ADMIN_EMAILS = [
   "ecyking72345@gmail.com",
   "rodkuhnhking@gmail.com"
@@ -9,7 +10,6 @@ const ADMIN_EMAILS = [
 
 const acceptCard = (title, mongoID, setShow) => {
         updateStatus(title, mongoID)
-        console.log("WE HAVE ACCEPTED THE CARD")
         setShow(false) // closes modal, resets hopefully!
 }
 
@@ -17,7 +17,6 @@ const declineCard = (title, mongoID, setShow) => {
         console.log("title and mongo id are", title, mongoID)
         deleteOne(title, mongoID)
         setShow(false) // closes modal, resets hopefully! doesn't trigger reset
-        console.log("WE HAVE DELETED THE CARD")
 }
 
 const isAdmin = (email) => {

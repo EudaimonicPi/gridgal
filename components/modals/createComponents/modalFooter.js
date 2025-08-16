@@ -17,10 +17,6 @@ export default function ModalFooter(props) {
     //lol footer needs editor state
     return (      
         <Modal.Footer>
-            {/* <button onClick={() => window.speechSynthesis.speak(msg)}>
-                YOYOYO
-            </button> */}
-            
             <SpeechButtons editorState={props.editorState}/>
             <Button variant="primary" onClick={props.handleClose}>
                 Close

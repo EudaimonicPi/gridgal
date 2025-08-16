@@ -1,4 +1,12 @@
-.cardContainer {
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.card-container {
   /* background: #fff; */
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -9,7 +17,7 @@
   cursor: pointer;
 }
 
-.cardContainer:hover {
+.card-container:hover {
   transform: scale(1.05);
 }
 /* where is this being put? */

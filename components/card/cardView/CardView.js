@@ -2,7 +2,7 @@
 'use client'
 import {useState} from 'react'
 import { CardHeading, CardImage, CardDescription,CardFooter } from './cardViewComponents';
-import './cardStyles.css';
+import '@/styles/cards.css'
 
 
 // NOTE: this is card view
@@ -12,13 +12,11 @@ export default function SingleCard (props) {
      const card = props.card
      // have to go over user data abse to get what the user image is,  buut i am satisfied for now
      // author is there! 
-     const image = card.authorImage? card.authorImage: "next.svg" // TO BE card.image
+     const image = card.authorImage? card.authorImage: "fgman.png" // TO BE card.image
      const name = card.name? card.name:"TEST" // too be card.name
-//     console.log("CARD IMAGE IS ", card.image)
-     // console.log("WHAT IS ", card.author)
 
     return (
-     <div className="cardContainer" style={{backgroundColor: '#ddd'}} onClick={() => setShow(true)}>
+     <div className="card-container" style={{backgroundColor: '#ddd'}} onClick={() => setShow(true)}>
           <CardImage image={card.image}/>
           <div className="cardContent">
                <CardHeading title={card.title}/>

@@ -1,3 +1,4 @@
+import styles from '@/styles/MultiModalInputs.module.css'
 // ImageInput component
 function ImageInput({ label, onChange }) {
     return (
@@ -13,7 +14,7 @@ function ImageInput({ label, onChange }) {
 }
 
 // does text stuff 
-function TextInput({ label, value, onChange, placeholder="hi"}) {
+function TextInput({ label, value, onChange, placeholder="start typing..."}) {
     return (
         <div>
             <p>{label}</p>
@@ -34,16 +35,7 @@ function BigTextInput({ label, value, onChange }) {
             <textarea
                 value={value}
                 onChange={onChange}
-                style={{ 
-                    width: '100%',
-                    height: '100px',
-                    marginBottom: '5%',
-                    resize: 'none', /* Prevents resizing */
-                    textAlign: 'start', /* Ensures text starts from the left */
-                    verticalAlign: 'top', /* Keeps cursor at the top */
-                    padding: '8px', /* Adds spacing inside the box */
-                    boxSizing: 'border-box' /* Ensures padding doesn't affect width */
-                }}
+                className={styles.bigInputStyle}
             />
         </div>
     );

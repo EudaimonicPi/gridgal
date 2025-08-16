@@ -1,4 +1,4 @@
-import {ImageInput, TextInput, BigTextInput} from '@/components/modals/subComponents/inputs'
+import {ImageInput, TextInput, BigTextInput} from '@/components/elements/MultiModalInputs'
 
   export default function Inputs({title, description, handleImageChange, setTitle, setDescription}) {
       return (
@@ -16,7 +16,6 @@ import {ImageInput, TextInput, BigTextInput} from '@/components/modals/subCompon
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder={"Name Your Grid"}
                         />  
-
                         <BigTextInput
                             label="Grid Description"
                             type="text"

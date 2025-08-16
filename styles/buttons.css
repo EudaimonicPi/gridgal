@@ -7,6 +7,7 @@
   font-size: 16px;
   border-radius: 6px; /* Rounded corners */
   cursor: pointer;
+  color: white;
   transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -16,17 +17,14 @@
 
 .mod-button.green {
   background-color: #28a745; /* Green background */
-  color: white;
 }
 
 .mod-button.red {
   background-color: #dc3545; /* Red background */
-  color: white;
 }
 
 .mod-button.gold {
   background-color: #ffc107; /* Gold background */
-  color: white;
 }
 
 .mod-button span {
@@ -36,4 +34,5 @@
 
 .button-container {
   display: flex;
+  justify-content: center;
 }

@@ -1,75 +1,52 @@
 'use client'
 import {useState, useEffect} from 'react'
+import { useRouter } from 'next/navigation';
 import {getCards} from '@/utils/cards'
-import { fetchAll } from '@/utils/dbFns/databaseFn'
 import ProfilePic from '@/components/buttons/profilePic'
 import { useSession } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns'
-import { LoadingPage } from '@/components/loading/login'
+import { LoadingPage } from '@/components/elements/LoadingPage'
+import { usePaginatedCards } from '@/hooks/usePaginatedCards'
+import PaginationControls from '@/components/elements/PaginationPageControl'
+import '@/styles/cards.css';
 // import {noWIFIfetchedCards} from '@/utils/offline/data'
-const cardContainerStyle = {
-  // backgroundColor: 'pink',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-around',
-  flexWrap: 'wrap',
-  padding: '20px',
-}
-
-
-
 
 
 export default function Route({props}) {
-    const [cards, setCards] = useState([]) //card arr to store cards 
     const {data, status} = useSession()
-    const [isLoading, setIsLoading] = useState(true)
     const [refresh, setRefresh] = useState(false)
 
     const email = data? data.user.email: null
     const isApproved= isAdmin(email)
     const permissionToView = status === "authenticated" && isApproved 
 
-    // note: eval is not valid function name LOL 
+    const router = useRouter();
 
-    // use Effect to fetdh cards from MOD database 
-     useEffect(() => { // weird promise stuff ou non?
-      // IIFE to create an asynchronous context
-      (async () => {
-        try {
-          setIsLoading(true)
+    useEffect(() => {
+      if (!permissionToView) {
+        // Redirect to homepage if no permission to view the page
+        router.push('/');
+        return; // Prevent further rendering
+      }
+    }, [permissionToView, router]);
 
-          // Use await inside the asynchronous function
-          const fetchedCardsJSON = await fetchAll(true);
-          const fetchedCards = JSON.parse(fetchedCardsJSON)
-          setCards(fetchedCards);  
-          if (refresh) setRefresh(false)
-        } catch (error) {
-          console.error('Error fetching cards:', error);
-        } finally {
-          setIsLoading(false)
-        }
-      })();
-    }, [refresh]); // Dependency array to run the effect once on mount
+    // mod is true
+    const { cards, page, setPage, totalPages, isLoading } = usePaginatedCards(3, true); // 10 per page
 
-    // when the mod updates (approve/decline, state should update)
-    // bad way to refresh, ideal is that modal is at this level but o well! 
-    // Fetch cards on mount and when `refresh` changes
-
-  if (status === "loading" || isLoading) return <LoadingPage />; 
+    if (status === "loading" || isLoading) return <LoadingPage />; 
    
-    // return (
-          return permissionToView? (
-        <div>
-          <ProfilePic />
-          <p> Moderation: Approve, Defer, Decline. </p>
-          {refresh && <p>Refreshing...</p>}
-          <p> Number of grids to approve: {cards.length} </p>
-          <div style={cardContainerStyle}>
-            {getCards(cards, true, setRefresh)}
+        return (
+          <div>
+            <ProfilePic />
+            <p> Moderation: Approve, Defer, Decline. </p>
+            {refresh && <p>Refreshing...</p>}
+            <p> Number of grids to approve: {cards.length} </p>
+
+            <div className="cards-container">
+              {getCards(cards, true, setRefresh)}
+            </div>
+            <PaginationControls page={page} totalPages={totalPages} setPage={setPage} />
           </div>
-        </div>
-      ) : null // If not authenticated, return nothing
-        // )
+        )
 
 }

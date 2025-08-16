@@ -1,63 +1,39 @@
 'use client';
-import {useState} from 'react'
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePaginatedCards } from '@/hooks/usePaginatedCards';
-import CreateButton from '@/components/buttons/createButton';
-import CreateModal from '@/components/modals/createModal';
-import ConfirmModal from '@/components/modals/confirmModal';
-import SignInButton from '@/components/buttons/signIn';
-import ProfilePic from '@/components/buttons/profilePic';
-import { LoadingPage } from '@/components/loading/login';
+import HomepageHeader from '@/components/pageSections/headers/HomepageHeader'; // Import the new component
+import { LoadingPage } from '@/components/elements/LoadingPage';
 import { getCards } from '@/utils/cards';
-import './extra.css';
-import PaginationControls from '@/components/elements/paginationControls';
+import PaginationControls from '@/components/elements/PaginationPageControl';
+import '@/styles/cards.css';
 
-const cardContainerStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-  gap: '20px',
-  padding: '20px',
-  justifyContent: 'center',
-};
 
-export default function Home() {
+export default function Page() {
   const { data, status } = useSession();
-
   const { cards, page, setPage, totalPages, isLoading } = usePaginatedCards(3); // 10 per page
   const [show, setShow] = useState(false);
   const [confirmModalShow, setConfirmModalShow] = useState(false);
-  const [countryCode, setCountryCode] = useState('US');
 
   if (status === 'loading' || isLoading) return <LoadingPage />;
 
   return (
     <main>
-      {status === 'authenticated' && (
-        <CreateButton handleClick={() => setShow(true)} />
-      )}
-      <SignInButton />
-      <ProfilePic />
-
-      <ConfirmModal
-        show={confirmModalShow}
-        handleClose={() => setConfirmModalShow(false)}
-      />
-      <CreateModal
+      {/* Use HomepageHeader component */}
+      <HomepageHeader
         show={show}
-        handleClose={() => setShow(false)}
-        cards={cards}
-        setCards={() => {}} // optional, since we handle in hook
-        countryCode={countryCode}
-        setCountryCode={setCountryCode}
-        confirmShow={confirmModalShow}
-        setConfirmShow={setConfirmModalShow}
+        setShow={setShow}
+        confirmModalShow={confirmModalShow}
+        setConfirmModalShow={setConfirmModalShow}
+        isAuthenticated={status === 'authenticated'}
       />
 
-      <div style={cardContainerStyle}>{getCards(cards)}</div>
+      <div className="cards-container">
+        {getCards(cards)}
+      </div>
 
       {/* Pagination Controls */}
-      <PaginationControls page={page} totalPages={totalPages} setPage={setPage}/>
+      <PaginationControls page={page} totalPages={totalPages} setPage={setPage} />
     </main>
   );
 }
-
