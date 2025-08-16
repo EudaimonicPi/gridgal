@@ -25,18 +25,49 @@
 import { connectDB } from "@/utils/mongodb/connect";
 import { Card } from "@/utils/mongodb/models/card";
 
+// export async function POST(request) {
+//   const { mod, limit } = await request.json(); // accept limit
+//   try {
+//     await connectDB();
+
+//     const status = mod ? 'pending' : 'accepted';
+//     let query = Card.find({ status });
+
+//     if (limit && Number.isInteger(limit)) {
+//       query = query.limit(limit); // limit results
+//     }
+
+//     const allCards = await query.exec();
+
+//     return new Response(JSON.stringify(allCards), { status: 200 });
+//   } catch (error) {
+//     return new Response("Failed to get cards", { status: 500 });
+//   }
+// }
+
+
 export async function POST(request) {
-  const { mod, limit } = await request.json(); // accept limit
+  const { mod, limit, onlyFavorites } = await request.json(); // Accept limit and onlyFavorites
   try {
     await connectDB();
 
+    // Default to 'accepted' status unless mod is true (pending)
     const status = mod ? 'pending' : 'accepted';
+    
+    // Start with the base query
     let query = Card.find({ status });
 
-    if (limit && Number.isInteger(limit)) {
-      query = query.limit(limit); // limit results
+    // If onlyFavorites is true, filter for ecyFav = true
+    if (onlyFavorites) {
+      query = query.where('ecyFav').equals(true);
     }
 
+    // Apply limit if provided
+    if (limit && Number.isInteger(limit)) {
+      query = query.limit(limit); // Limit results
+    }
+
+    // Execute the query
     const allCards = await query.exec();
 
     return new Response(JSON.stringify(allCards), { status: 200 });

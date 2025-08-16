@@ -4,14 +4,11 @@ import { useSession } from 'next-auth/react';
 import { usePaginatedCards } from '@/hooks/usePaginatedCards';
 import HomepageHeader from '@/components/pageSections/headers/HomepageHeader'; // Import the new component
 import { LoadingPage } from '@/components/elements/LoadingPage';
-import { getCards } from '@/utils/cards';
-import PaginationControls from '@/components/elements/PaginationPageControl';
-import '@/styles/cards.css';
-
+import CardsContainer from '@/components/elements/CardsContainer';
 
 export default function Page() {
   const { data, status } = useSession();
-  const { cards, page, setPage, totalPages, isLoading } = usePaginatedCards(3); // 10 per page
+  const { cards, page, setPage, totalPages, isLoading } = usePaginatedCards(3); 
   const [show, setShow] = useState(false);
   const [confirmModalShow, setConfirmModalShow] = useState(false);
 
@@ -27,13 +24,12 @@ export default function Page() {
         setConfirmModalShow={setConfirmModalShow}
         isAuthenticated={status === 'authenticated'}
       />
+         <CardsContainer 
+                cards={cards} 
+                page={page}
+                totalPages={totalPages}
+                setPage={setPage}/>
 
-      <div className="cards-container">
-        {getCards(cards)}
-      </div>
-
-      {/* Pagination Controls */}
-      <PaginationControls page={page} totalPages={totalPages} setPage={setPage} />
     </main>
   );
 }

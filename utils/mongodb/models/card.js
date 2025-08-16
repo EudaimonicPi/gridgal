@@ -8,7 +8,8 @@ const CardSchema = new Schema({
     image: {type: String}, // i think it's encoded as a string... it will have to be? 
     status: {type: String, default: 'pending'},
     author: {type: String, default: 'ecyking72345@gmail.com'}, // for now... later on, we'll see type .
-    authorImage: {type: String } // no default for now... 
+    authorImage: {type: String }, // no default for now... 
+    ecyFav: {type: Boolean, default: false}
 })
 
 
