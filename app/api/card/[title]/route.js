@@ -58,16 +58,22 @@ export const PUT = async (request, { params }) => {
   // other updates i can think about later
 
   const {title} = params
-  const { cardID } = await request.json();
+  const { cardID, ecyFav } = await request.json();
   // console.log("Card is is ", cardID, title)
 
   try {
     await connectDB();
     // this is update 1
-    const testSave = await Card.findOneAndUpdate(
+    const updatedCard = await Card.findOneAndUpdate(
         {_id: cardID}, //first arg is find
-        {status: 'accepted'}// second arg is update
+        {status: 'accepted',
+      ecyFav: ecyFav},
+      { new: true }// second arg is update
     );
+
+     if (!updatedCard) {
+      return new Response("Card not found", { status: 404 });
+    }
 
     // if id not found stuff
     return new Response({ status: 200 });
