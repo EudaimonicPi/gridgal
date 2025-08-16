@@ -33,7 +33,6 @@ export default function Route({props}) {
     if (status === "loading" || isLoading) return <LoadingPage />; 
         return (
           <div>
-            {/* <ProfilePic /> */}
             <p> Moderation: Approve, Defer, Decline. </p>
             <p> Number of grids to approve: {cards.length} </p>
             <CardsContainer 
