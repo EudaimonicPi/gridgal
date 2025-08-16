@@ -12,7 +12,7 @@ export default function SingleCard (props) {
      const card = props.card
      // have to go over user data abse to get what the user image is,  buut i am satisfied for now
      // author is there! 
-     const image = card.authorImage? card.authorImage: "next.svg" // TO BE card.image
+     const image = card.authorImage? card.authorImage: "fgman.png" // TO BE card.image
      const name = card.name? card.name:"TEST" // too be card.name
 
     return (

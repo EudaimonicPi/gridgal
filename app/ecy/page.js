@@ -22,6 +22,7 @@ const cardContainerStyle = {
 };
 
 
+// g oal to just fetch my favs 
 export default function Home() {
   const [show, setShow] = useState(false) // show for the create button modal 
   const [cards, setCards] = useState([]) //card arr to store cards 

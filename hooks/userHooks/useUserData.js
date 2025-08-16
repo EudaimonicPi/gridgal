@@ -10,8 +10,7 @@ export function useUserData() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  console.log("DATA IS ", session?.user)
-  // we have userData.email, image, and name
+2  // we have userData.email, image, and name
   useEffect(() => {
     if (status === 'loading') {
       setLoading(true);
@@ -23,6 +22,7 @@ export function useUserData() {
 
       if (status === 'authenticated' && session?.user) {
           setUserData(session.user)
+          setIsAuthenticated(true)
 
       } else {
         // not authenticated

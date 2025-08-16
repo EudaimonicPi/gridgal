@@ -12,7 +12,7 @@ export default function MoreInfoModal({ card, show, setShow, mod, setRefresh }) 
   const { data, status } = useSession();
   // const name = card.author;
   const name = "author"
-  const image = card.authorImage || 'next.svg';
+  const image = card.authorImage || 'fgman.png';
   const headerTitle = `${card.title} Fractal Grid`;
   const currentUser = false;
 
