@@ -2,9 +2,7 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePaginatedCards } from '@/hooks/usePaginatedCards';
-// the culprit
-
-// import HomepageHeader from '@/components/pageSections/headers/HomepageHeader'; // Import the new component
+import HomepageHeader from '@/components/pageSections/headers/HomepageHeader'; // Import the new component
 import { LoadingPage } from '@/components/elements/LoadingPage';
 import { getCards } from '@/utils/cards';
 import PaginationControls from '@/components/elements/PaginationPageControl';
@@ -22,13 +20,13 @@ export default function Page() {
   return (
     <main>
       {/* Use HomepageHeader component */}
-      {/* <HomepageHeader
+      <HomepageHeader
         show={show}
         setShow={setShow}
         confirmModalShow={confirmModalShow}
         setConfirmModalShow={setConfirmModalShow}
         isAuthenticated={status === 'authenticated'}
-      /> */}
+      />
 
       <div className="cards-container">
         {getCards(cards)}

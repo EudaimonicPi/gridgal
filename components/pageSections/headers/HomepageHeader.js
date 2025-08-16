@@ -1,8 +1,7 @@
 'use client';
-import { useState } from 'react';
 import CreateButton from '@/components/buttons/createButton';
-import CreateModal from '@/components/modals/CreateCardModal';
-import ConfirmModal from '@/components/modals/SubmittedGridModal';
+// import CreateModal from '@/components/modals/CreateCardModal';
+// import ConfirmModal from '@/components/modals/SubmittedGridModal';
 import SignInButton from '@/components/buttons/signIn';
 import ProfilePic from '@/components/buttons/profilePic';
 
@@ -14,9 +13,10 @@ export default function HomepageHeader({ show, setShow, confirmModalShow, setCon
       )}
       {/* hmmm... want this on the left though */}
       {!isAuthenticated && <SignInButton />}
+
       <ProfilePic />
 
-      <ConfirmModal
+      {/* <ConfirmModal
         show={confirmModalShow}
         handleClose={() => setConfirmModalShow(false)}
       />
@@ -27,7 +27,7 @@ export default function HomepageHeader({ show, setShow, confirmModalShow, setCon
         setCards={() => {}}
         confirmShow={confirmModalShow}
         setConfirmShow={setConfirmModalShow}
-      />
+      /> */}
     </div>
   );
 }
