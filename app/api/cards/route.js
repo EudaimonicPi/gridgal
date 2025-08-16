@@ -50,6 +50,7 @@ export async function POST(request) {
   const { mod, limit, onlyFavorites } = await request.json(); // Accept limit and onlyFavorites
   try {
     await connectDB();
+    // const fields = "_id title" // we do want all the fields though 
 
     // Default to 'accepted' status unless mod is true (pending)
     const status = mod ? 'pending' : 'accepted';
@@ -58,9 +59,9 @@ export async function POST(request) {
     let query = Card.find({ status });
 
     // If onlyFavorites is true, filter for ecyFav = true
-    if (onlyFavorites) {
-      query = query.where('ecyFav').equals(true);
-    }
+    // if (onlyFavorites) {
+    //   query = query.where('ecyFav').equals(true);
+    // }
 
     // Apply limit if provided
     if (limit && Number.isInteger(limit)) {
@@ -68,7 +69,7 @@ export async function POST(request) {
     }
 
     // Execute the query
-    const allCards = await query.exec();
+    const allCards = await query
 
     return new Response(JSON.stringify(allCards), { status: 200 });
   } catch (error) {
