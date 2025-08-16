@@ -22,7 +22,7 @@ function getImagePreview(imageURL) {
 }
  
 
-const compressImage = (file, maxWidth = 400, maxHeight = 400, quality = 0.5) => {
+const compressImage = (file, maxWidth = 500, maxHeight = 500, quality = 0.7) => {
     return new Promise((resolve, reject) => {
         const image = new Image();
         const reader = new FileReader();
