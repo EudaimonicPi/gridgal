@@ -1,5 +1,6 @@
 'use client'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import { useRouter } from 'next/navigation';
 import {getCards} from '@/utils/cards'
 import ProfilePic from '@/components/buttons/profilePic'
 import { useSession } from 'next-auth/react';
@@ -13,19 +14,28 @@ import '@/styles/cards.css';
 
 export default function Route({props}) {
     const {data, status} = useSession()
-    // const [isLoading, setIsLoading] = useState(true)
     const [refresh, setRefresh] = useState(false)
 
     const email = data? data.user.email: null
     const isApproved= isAdmin(email)
     const permissionToView = status === "authenticated" && isApproved 
+
+    const router = useRouter();
+
+    useEffect(() => {
+      if (!permissionToView) {
+        // Redirect to homepage if no permission to view the page
+        router.push('/');
+        return; // Prevent further rendering
+      }
+    }, [permissionToView, router]);
+
     // mod is true
     const { cards, page, setPage, totalPages, isLoading } = usePaginatedCards(3, true); // 10 per page
 
     if (status === "loading" || isLoading) return <LoadingPage />; 
    
-    // return (
-        return permissionToView? (
+        return (
           <div>
             <ProfilePic />
             <p> Moderation: Approve, Defer, Decline. </p>
@@ -35,10 +45,8 @@ export default function Route({props}) {
             <div className="card-container">
               {getCards(cards, true, setRefresh)}
             </div>
-
-
             <PaginationControls page={page} totalPages={totalPages} setPage={setPage} />
           </div>
-      ) : null // If not authenticated, return nothing
-        // ) // would be great to redirect instea
+        )
+
 }

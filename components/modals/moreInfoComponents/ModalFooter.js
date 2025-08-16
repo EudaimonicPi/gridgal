@@ -23,7 +23,7 @@ export default function ModalFooter({ card, setShow, admin, onModPage, currentUs
                 mod={admin}
              />
             {/* can delete means either is admin or card author matches current user */}
-              <ExtraDelete card={card} setShow={setShow} admin={admin} onModPage={onModPage} />
+            <ExtraDelete card={card} setShow={setShow} admin={admin} onModPage={onModPage} />
 
 
           {/* could potentiall put {card.name} but rn that's email */}

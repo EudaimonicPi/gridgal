@@ -8,7 +8,6 @@ import { LoadingPage } from '@/components/elements/LoadingPage';
 import { getCards } from '@/utils/cards';
 import PaginationControls from '@/components/elements/PaginationControls';
 import '@/styles/cards.css';
-// import './extra.css';
 
 
 export default function Home() {
