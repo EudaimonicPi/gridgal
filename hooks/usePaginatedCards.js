@@ -31,7 +31,7 @@ export function usePaginatedCards(itemsPerPage = 1, mod = false, onlyFavorites=f
         // Step 2: fetch the rest in the background
         setIsBackgroundLoading(true);
         const fullBatchJSON = await fetchAll(mod, null, onlyFavorites);
-        const fullBatch = fullBatchJSON.parse(fullBatchJSON)
+        const fullBatch = JSON.parse(fullBatchJSON)
 
 
         if (!cancelled) {
@@ -47,10 +47,9 @@ export function usePaginatedCards(itemsPerPage = 1, mod = false, onlyFavorites=f
       }
     })();
 
-    // return () => {
-      // console.log("WHY IS IT CANCELED???")
-      // cancelled = true;
-    // };
+    return () => {
+      cancelled = true;
+    };
   }, [itemsPerPage, mod, onlyFavorites]);
 
 
