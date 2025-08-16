@@ -2,8 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { ModButtonTemplate } from '@/components/buttons/ButtonTemplate';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-// import DeleteButton from '@/components/buttons/DeleteButton';
-import ThreeButtons, { DeleteButton, ModButton } from '@/components/buttons/ThreeButtons';
+import { DeleteButton } from '@/components/buttons/ThreeButtons';
 
 import { CurrentUserImage, UserImage } from '@/components/buttons/icons';
 
@@ -43,16 +42,3 @@ export default function ModalFooter({ card, setShow, admin, onModPage, currentUs
   );
 }
 
-
-      /* <span>
-        
-        <ModButtonTemplate onClick={() => console.log('favorite clicked')} icon={faStar} label="Favorite" color="gold" mod={admin} />
-        <ExtraDelete card={card} setShow={setShow} admin={admin} onModPage={onModPage} />
-        <div>Made by:</div>
-        <div>
-          {currentUser ? <CurrentUserImage /> : <UserImage name={name} image={image} onClick={onClick} />}
-        </div>
-        <Button variant="primary" onClick={() => setShow(false)}>
-          Close
-        </Button>
-      </span> */

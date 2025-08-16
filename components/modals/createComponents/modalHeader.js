@@ -1,6 +1,6 @@
 /* Contains the modal head */
 import Modal from 'react-bootstrap/Modal';
-import './ModalStyles.css'; // Import your CSS file for styling
+import '@/styles/modals.css'; // Import your CSS file for styling
 
 export default function ModalHeader({currentUser, title, name, image, onClick}) {
   // Add grid to gallery 

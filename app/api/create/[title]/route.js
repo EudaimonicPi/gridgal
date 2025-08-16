@@ -1,6 +1,5 @@
 import { connectDB, modConnectDB } from "@/utils/mongodb/connect";
 import { Card } from "@/utils/mongodb/models/card";
-import Image from '@/public/vercel.svg'
 import { genCard } from '@/utils/cards'
 
 

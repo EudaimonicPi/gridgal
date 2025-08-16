@@ -1,119 +1,64 @@
-'use client'
-import {useState} from 'react'
-// The create modal that pops up once you create a grid
+// // The create modal that pops up once you create a grid
+'use client '
 import Modal from 'react-bootstrap/Modal'; //just keeping it consistent :)
 
-import { genCard } from '@/utils/cards'
-import { getImagePreview } from '@/utils/imageFn'
-import { createOne } from '@/utils/dbFns/databaseFn'
-import {isInvalid } from '@/utils/validateInput';
-import { useSession } from 'next-auth/react';
-import Inputs from '../../elements/SubmitGridInputs';
 import { Button } from 'react-bootstrap';
+import { useSession } from 'next-auth/react';
+import { getImagePreview } from '@/utils/imageFn';
+import Inputs from '../../elements/SubmitGridInputs';
+import useCreateGrid from '@/hooks/submitGrid/useCreateGrid';  // Import the custom hook
 
-import 'bootstrap/dist/css/bootstrap.min.css'; //necessary for styling
+import 'bootstrap/dist/css/bootstrap.min.css'; // Necessary for styling
 
 const iconStyles = {
     color: "white",
     padding: "5px 15px",
     borderRadius: "5px",
     cursor: "pointer",
-    // position: "absolute"
-  }
-
-// TODO: decomp
-export default function ModalBody({handleClose, cards, setCards, setConfirmShow}) {
-
-    const [title, setTitle] = useState('') // title 
-    // author will be form useSession email :) 
-    const [description, setDescription] = useState('') // title 
-    const [imageFile, setImage] = useState(null);
-    const [err, setErr] = useState('')
-    const [isErr, setIsErr] = useState(false)
-    const {data, status} = useSession()
-    
-    // TODO: error fixing, to put in useEffect oopsie!
-    const author = data? data.user.email: null // osmethin went wrong or i did
-    const authorImage = data? data.user.image: null
-
-    function resetInputs() {
-        setTitle('');
-        setDescription('');
-        setImage(null);
-        setConfirmShow(true)
-        handleClose();
-    }
-    
-
-const onSubmitFn = async (title, author, description, imageFile, authorImage=null) => {
-    // validation functions!!!
-    let validationArr = isInvalid(title, author,  imageFile)
-    if (!validationArr.length == 0) { 
-        // this sets the error message 
-        setErr(validationArr[0])
-        setIsErr(true)
-        return 
-    }
-    try { // thanks chat gpt !
-        const reader = new FileReader();
-
-        // Set up a promise to resolve when the reader has loaded the file
-        const fileLoaded = new Promise((resolve) => {
-            reader.addEventListener('load', () => {
-                resolve(reader.result);
-            });
-        });
-
-        reader.readAsDataURL(imageFile); // load the file
-        const imageInput = await fileLoaded; // wait for teh file to be loaded
-        if (typeof(imageInput) != 'blob') {
-            console.error("Image input incorrect, not blob?")
-            setErr("Image input incorrect")
-            setIsErr(true)
-        }
-
-        // generates a new card 
-        const card = genCard(title, author, description, imageInput, authorImage);
-
-        // here's what i SHOULDN'T BE DOING! we don't want this because card has to go for mod approval!
-        // setCards([...cards, card]); // update state with new card instead, mod approval message
-
-        resetInputs();
-        await createOne('YOYOYO', card); // asynchronously save to db
-    } catch (error) {
-        console.error('Error processing data:', error);
-        // Handle error as needed
-    }
 };
 
-    const handleImageChange = (e) => { // chat, presumably makes image out of first file
-        const selectedImage = e.target.files[0];
-        setImage(selectedImage);
-    };
+export default function ModalBody({ handleClose, cards, setCards, setConfirmShow }) {
+    const { data, status } = useSession();
+    const author = data ? data.user.email : null;
+    const authorImage = data ? data.user.image : null;
+
+    const {
+        title,
+        setTitle,
+        description,
+        setDescription,
+        imageFile,
+        handleImageChange,
+        err,
+        isErr,
+        onSubmitFn,
+        resetInputs
+    } = useCreateGrid(cards, setCards, handleClose, setConfirmShow);
 
     return (
-                <Modal.Body> 
-                    {/* NOTE: eventually clean up white space and stuff*/}
-                    <div>
-                        <Inputs 
-                                    handleImageChange={handleImageChange}
-                                    title={title}
-                                    setTitle={setTitle}
-                                    description={description}
-                                     setDescription={setDescription}/>
-                        {/*THIS IS THE PREVIEW */}
-                        {imageFile && getImagePreview(imageFile)}
-                {/* This should be tied to the user in future, right? like where they are based  */}
-                <p> Feel free to talk about the why, what, and how of your grid!  </p>
-                    <Button onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)}
-                    style={iconStyles} >
-                        Submit
-                    </Button> 
-                     
-                        <p style={{color: 'red', marginTop: "1%"}}>{isErr && err}</p>
-                    </div>
+        <Modal.Body>
+            <div>
+                <Inputs 
+                    handleImageChange={handleImageChange}
+                    title={title}
+                    setTitle={setTitle}
+                    description={description}
+                    setDescription={setDescription}
+                />
+                {/* Image Preview */}
+                {imageFile && getImagePreview(imageFile)}
 
+                <p>Feel free to talk about the why, what, and how of your grid!</p>
 
-                </Modal.Body>      
-  );
+                <Button 
+                    onClick={() => onSubmitFn(title, author, description, imageFile, authorImage)} 
+                    style={iconStyles}
+                >
+                    Submit
+                </Button>
+
+                <p style={{ color: 'red', marginTop: "1%" }}>{isErr && err}</p>
+            </div>
+        </Modal.Body>
+    );
 }

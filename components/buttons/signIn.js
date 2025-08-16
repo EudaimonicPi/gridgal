@@ -1,8 +1,9 @@
-
+import './extra.css'
 import { useSession, signIn, signOut } from 'next-auth/react';
-export default function SignInButton() {
+export default function SignInOrOutButton() {
    const { data, status } = useSession();
   if (status === 'loading') return <h1> loading... please wait</h1>;
+  
    if (status === 'authenticated') {
         return (
             <div>
