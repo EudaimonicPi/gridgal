@@ -1,6 +1,6 @@
 'use client'
 import '@/styles/headerStyle.css'
-import ProfilePic from '@/components/buttons/ProfileIcon'
+import ProfilePic from '@/components/elements/ProfileIcon'
 
 export default function Header(props) {
     const title = props.title

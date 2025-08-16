@@ -8,7 +8,7 @@ function getHugeImage(image) {
         //    src={URL.createObjectURL(image)} 
                 src={image} 
                 alt="Uploaded" 
-                style={{ width: '100%', marginTop: '10px' }} />
+                style={{ width: '80%', marginTop: '10px' }} />
     )
 }
 
@@ -22,7 +22,7 @@ function getImagePreview(imageURL) {
 }
  
 
-const compressImage = (file, maxWidth = 800, maxHeight = 800, quality = 0.7) => {
+const compressImage = (file, maxWidth = 500, maxHeight = 500, quality = 0.7) => {
     return new Promise((resolve, reject) => {
         const image = new Image();
         const reader = new FileReader();

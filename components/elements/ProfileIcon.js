@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import {imageContainerStyles, userImageStyles} from './loginStyles'
+import {imageContainerStyles, userImageStyles} from '../buttons/loginStyles'
 import { Dropdown } from 'react-bootstrap';
 import { signOut } from 'next-auth/react';
 import { isAdmin } from '@/utils/modFns';

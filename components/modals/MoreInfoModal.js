@@ -28,7 +28,10 @@ export default function MoreInfoModal({ card, show, setShow, mod, setRefresh }) 
     <Modal show={show} onHide={() => setShow(false)}>
       <ModalHeader title={headerTitle} currentUser={false} name={name} onClick={onClick} image={image} />
       <Modal.Body>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
         {getHugeImage(card.image)}
+
+        </div>
         {card.description}
         {onModPage && <ThreeButtons setRefresh={setRefresh} card={card} setShow={setShow} />}
       </Modal.Body>

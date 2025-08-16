@@ -36,13 +36,11 @@ export default function ThreeButtons(props) { // no use effect separate place to
     const setShow = props.setShow
 
     const handleDelete = (title, mongoID,setShow) => {
-        console.log("we have refreshed!")
         declineCard(title, mongoID, setShow)
         props.setRefresh(true) // assumed mod!
     }
      
     const handleAccept = (title, mongoID, setShow)=> {
-        console.log("we have refreshed!")
         acceptCard(title, mongoID, setShow)
         props.setRefresh(true) // assumed mod!
 
