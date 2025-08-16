@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser} from '@fortawesome/free-solid-svg-icons'
-import ProfilePic from '@/components/buttons/ProfileIcon'
+import ProfilePic from '@/components/elements/ProfileIcon'
 export default function Route({props}) {
     return (
     <div>
