@@ -3,7 +3,7 @@ import CreateButton from '@/components/buttons/createButton';
 import CreateModal from '@/components/modals/CreateCardModal';
 import ConfirmModal from '@/components/modals/SubmittedGridModal';
 import SignInButton from '@/components/buttons/signIn';
-import ProfilePic from '@/components/buttons/ProfileIcon';
+import ProfilePic from '@/components/elements/ProfileIcon';
 
 export default function HomepageHeader({ show, setShow, confirmModalShow, setConfirmModalShow, isAuthenticated }) {
   return (
