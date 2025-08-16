@@ -17,10 +17,10 @@ export function usePaginatedCards(itemsPerPage = 1, mod = false, onlyFavorites=f
         setIsLoading(true);
 
         // const firstBatchJSON = await fetchAll(mod, itemsPerPage);
-        const firstBatch = await fetchAll(mod, itemsPerPage, onlyFavorites);
+        const firstBatchJSON = await fetchAll(mod, itemsPerPage, onlyFavorites);
         console.log("first batch has been fetched !")
-        // const firstBatch = JSON.parse(firstBatchJSON);
-        console.log("FIRST BATCH IS ", firstBatch)
+        const firstBatch = JSON.parse(firstBatchJSON);
+        // console.log("FIRST BATCH IS ", firstBatch)
 
         if (!cancelled) {
           console.log("First batch length:", firstBatch.length);
@@ -30,7 +30,9 @@ export function usePaginatedCards(itemsPerPage = 1, mod = false, onlyFavorites=f
         console.log("now we're fetching background things ")
         // Step 2: fetch the rest in the background
         setIsBackgroundLoading(true);
-        const fullBatch = await fetchAll(mod, null, onlyFavorites);
+        const fullBatchJSON = await fetchAll(mod, null, onlyFavorites);
+        const fullBatch = fullBatchJSON.parse(fullBatchJSON)
+
 
         if (!cancelled) {
           console.log("Full batch length:", fullBatch.length);

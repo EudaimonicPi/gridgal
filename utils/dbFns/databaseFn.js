@@ -21,8 +21,8 @@ const fetchAll = async (mod = false, limit = null, onlyFavorites = false) => {
     });
 
     if (response.ok) {
-      const toReceive = await response.json();
-      return toReceive
+      const toReceiveJSON = await response.json();
+      return JSON.stringify(toReceiveJSON)
     }
   } catch (err) {
     console.log("Error with fetching all cards", err);
