@@ -1,6 +1,6 @@
-import '@/styles/cards.css';
 import { getCards } from '@/utils/cards';
 import PaginationControls from './PaginationPageControl';
+import '@/styles/cards.css';
 
 export default function CardsContainer({
     mod=false,
